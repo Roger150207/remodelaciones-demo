@@ -22,3 +22,6 @@ PARA UN CLIENTE NUEVO
 NOTAS
 - La página no se indexa en Google (noindex en la página, en robots.txt y en vercel.json).
 - No usa servidor, base de datos ni APIs. El formulario solo abre WhatsApp con el mensaje armado.
+
+PUBLICACIÓN
+- El repo está conectado al proyecto de Vercel: cada push a main se publica solo en remodelaciones.heyelevu.com.
