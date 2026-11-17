@@ -3,7 +3,7 @@
    ========================================================= */
 const CONFIG = {
   // WhatsApp que recibe las cotizaciones: 52 + 10 dígitos, sin espacios ni signos.
-  whatsapp: '524441109812',
+  whatsapp: '524441107319',
   // Teléfono para el botón "Llamar" en celular (10 dígitos). Déjalo vacío '' para ocultarlo.
   telefono: '',
 

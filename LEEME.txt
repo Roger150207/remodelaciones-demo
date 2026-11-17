@@ -8,7 +8,7 @@ SUBIRLA A VERCEL (3 pasos)
 
 ANTES DE SUBIRLA: cambia tu WhatsApp
 - Abre assets/js/app.js. Hasta arriba está CONFIG.
-- whatsapp: '524441109812' (ya configurado). Formato: 52 + 10 dígitos, sin espacios.
+- whatsapp: '524441107319' (ya configurado). Formato: 52 + 10 dígitos, sin espacios.
 - minBudget: presupuesto mínimo (hoy $30,000). El primer rango de "budgets" debe terminar en ese número.
 - businessName, city, services, zones, urgency, mapsUrl, reviewsUrl: todo se cambia ahí mismo.
 
