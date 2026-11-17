@@ -3,18 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Remodelaciones Tu Nombre · Cocinas, baños e impermeabilización</title>
+<title>Remodelaciones Tu Nombre · Remodelación residencial</title>
 <meta name="description" content="Remodelamos tu casa con presupuesto por escrito, fotos del avance y garantía. Cotiza tu obra en 1 minuto por WhatsApp.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#1b1d20">
+<meta name="theme-color" content="#121110">
 <meta property="og:title" content="Remodelaciones Tu Nombre">
-<meta property="og:description" content="Tu remodelación terminada a tiempo y sin sorpresas en el precio. Cotiza en 1 minuto.">
+<meta property="og:description" content="Tu casa, terminada a tiempo y sin sorpresas en el precio. Cotiza en 1 minuto.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://remodelaciones.heyelevu.com/assets/img/og.jpg">
 <link rel="icon" href="assets/img/icono.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/icono-180.png">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preload" href="assets/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/cormorant-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/styles.css">
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -24,8 +25,8 @@
 <header class="topbar" id="inicio">
   <div class="wrap topbar__in">
     <a class="brand" href="#inicio">
-      <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="#c27a45"/><path d="M9 21 20 11l11 10v9a1 1 0 0 1-1 1h-6v-7h-8v7h-6a1 1 0 0 1-1-1z" fill="#1b1d20"/></svg>
-      <span class="brand__txt"><span data-cfg="businessName">Remodelaciones Tu Nombre</span><small>Remodelación y mantenimiento</small></span>
+      <span class="brand__mark" aria-hidden="true">R</span>
+      <span class="brand__txt"><span data-cfg="businessName">Remodelaciones Tu Nombre</span><small>Remodelación residencial</small></span>
     </a>
     <nav class="nav" aria-label="Secciones">
       <a href="#trabajos">Trabajos</a>
@@ -33,118 +34,147 @@
       <a href="#garantias">Garantías</a>
       <a href="#ubicacion">Ubicación</a>
     </nav>
-    <a class="btn btn--sm btn--primary" href="#cotizar">Cotizar</a>
+    <a class="btn btn--sm btn--brass" href="#cotizar">Cotizar</a>
   </div>
 </header>
 
 <main>
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-t">
-  <div class="wrap hero__grid">
+  <div class="hero__media" id="hero-media" aria-hidden="true">
+    <img class="hero__slide is-on" src="assets/img/bano-cancel.webp" srcset="assets/img/bano-cancel-640.webp 640w, assets/img/bano-cancel.webp 1124w" sizes="100vw" width="1124" height="750" alt="" fetchpriority="high" data-cap="Baño con cancel de cristal">
+    <img class="hero__slide" data-src="assets/img/cocina-terracota.webp" data-srcset="assets/img/cocina-terracota-640.webp 640w, assets/img/cocina-terracota.webp 1000w" sizes="100vw" width="1000" height="750" alt="" data-cap="Cocina integral en terracota">
+    <img class="hero__slide" data-src="assets/img/bano-esquina.webp" data-srcset="assets/img/bano-esquina-640.webp 640w, assets/img/bano-esquina.webp 1124w" sizes="100vw" width="1124" height="750" alt="" data-cap="Baño con regadera de esquina">
+    <img class="hero__slide" data-src="assets/img/bano-mosaico.webp" data-srcset="assets/img/bano-mosaico-640.webp 640w, assets/img/bano-mosaico.webp 1125w" sizes="100vw" width="1125" height="750" alt="" data-cap="Baño en madera y mosaico">
+    <img class="hero__slide" data-src="assets/img/cocina-obra.webp" data-srcset="assets/img/cocina-obra-640.webp 640w, assets/img/cocina-obra.webp 1125w" sizes="100vw" width="1125" height="750" alt="" data-cap="Obra en proceso: cocina y estancia">
+  </div>
+  <div class="hero__shade" aria-hidden="true"></div>
+
+  <div class="wrap hero__in">
     <div class="hero__copy">
-      <p class="eyebrow eyebrow--dark"><span class="dot" aria-hidden="true"></span><span>Atendemos en <span data-cfg="city">tu ciudad</span> y alrededores</span></p>
-      <h1 id="hero-t">Tu remodelación, terminada a tiempo y <em>sin sorpresas</em> en el precio.</h1>
-      <p class="lead">Cocinas, baños, pisos, impermeabilización y herrería. Te damos el presupuesto por escrito, te mandamos fotos del avance y respondemos por la obra con garantía.</p>
+      <p class="kicker kicker--light">Atendemos en <span data-cfg="city">tu ciudad</span> y alrededores</p>
+      <h1 id="hero-t">Tu casa, terminada a tiempo y <em>sin sorpresas</em> en el precio.</h1>
+      <p class="lead">Cocinas, baños, pisos, impermeabilización y herrería. Presupuesto por escrito, fotos del avance cada semana y garantía en cada obra.</p>
       <div class="hero__ctas">
-        <a class="btn btn--primary btn--lg" href="#cotizar">
-          Cotizar mi obra en 1 minuto
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a class="btn btn--brass btn--lg" href="#cotizar">Quiero mi presupuesto
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a class="btn btn--ghost btn--lg" href="#trabajos">Ver más trabajos</a>
+        <a class="btn btn--line btn--lg" href="#trabajos">Ver trabajos</a>
       </div>
-      <ul class="hero__proof" aria-label="Lo que te garantizamos">
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4 10-10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Presupuesto por escrito</li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4 10-10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Garantía en mano de obra</li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4 10-10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Visita de valoración sin costo</li>
-      </ul>
+      <p class="hero__from">Obras desde <b data-cfg="minBudgetText">$30,000</b> · Visita y medidas sin costo</p>
     </div>
 
-    <figure class="hero__visual">
-      <div class="ba glass-frame" data-ba style="--pos:50%">
-        <img class="ba__img" src="assets/img/cocina-antes.svg" width="800" height="600" alt="Cocina antes de la remodelación: muebles dañados y azulejo roto" fetchpriority="high">
-        <img class="ba__img ba__after" src="assets/img/cocina-despues.svg" width="800" height="600" alt="La misma cocina después: muebles nuevos de madera y grafito, azulejo blanco">
-        <span class="ba__tag ba__tag--l">Antes</span><span class="ba__tag ba__tag--r">Después</span>
-        <span class="ba__handle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 6-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <input class="ba__range" type="range" min="0" max="100" value="50" aria-label="Desliza para comparar antes y después de la cocina">
+    <div class="hero__reel glass-dark">
+      <div class="reel__bars" id="reel-bars" aria-hidden="true"></div>
+      <div class="reel__row">
+        <p class="reel__cap"><span class="reel__k">En pantalla</span><span id="reel-cap">Baño con cancel de cristal</span></p>
+        <button class="reel__btn" type="button" id="reel-toggle" aria-label="Pausar presentación de fotos">
+          <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>
+        </button>
       </div>
-      <figcaption class="hero__cap">
-        <span class="chip chip--glass"><b>Cocina integral</b> · entregada en 3 semanas</span>
-        <span class="hint">Desliza para ver el cambio</span>
-      </figcaption>
-    </figure>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <ul class="trust" aria-label="Lo que te garantizamos">
+      <li><b>Presupuesto</b> por escrito</li>
+      <li><b>Garantía</b> en mano de obra</li>
+      <li><b>Fotos</b> de avance cada semana</li>
+      <li><b>Obra limpia</b> y escombro retirado</li>
+    </ul>
   </div>
 </section>
 
 <!-- DOLOR -> PROMESA -->
 <section class="pain" aria-labelledby="pain-t">
-  <div class="wrap">
-    <h2 id="pain-t" class="sr-only">Lo que cuidamos en cada obra</h2>
-    <ol class="pain__list">
-      <li class="reveal">
-        <p class="pain__no">“El maestro ya no regresó”</p>
-        <p class="pain__yes">Te damos fecha de inicio y de entrega por escrito, y vamos todos los días acordados.</p>
-      </li>
-      <li class="reveal">
-        <p class="pain__no">“Me cobraron el doble”</p>
-        <p class="pain__yes">Presupuesto desglosado antes de empezar. Si algo cambia, lo autorizas tú primero.</p>
-      </li>
-      <li class="reveal">
-        <p class="pain__no">“Dejaron todo sucio”</p>
-        <p class="pain__yes">Protegemos tus muebles y nos llevamos el escombro al terminar.</p>
-      </li>
-    </ol>
+  <div class="wrap pain__grid">
+    <h2 id="pain-t" class="pain__title reveal">Lo que nadie quiere vivir en una obra. <em>Lo que cuidamos nosotros.</em></h2>
+    <ul class="pain__list">
+      <li class="reveal"><p class="pain__no">“El maestro ya no regresó.”</p><p class="pain__yes">Fecha de inicio y de entrega por escrito. Vamos los días acordados.</p></li>
+      <li class="reveal"><p class="pain__no">“Me cobraron el doble.”</p><p class="pain__yes">Presupuesto desglosado antes de empezar. Si algo cambia, lo autorizas tú.</p></li>
+      <li class="reveal"><p class="pain__no">“Dejaron todo sucio.”</p><p class="pain__yes">Protegemos tus muebles y retiramos el escombro al terminar.</p></li>
+    </ul>
   </div>
 </section>
 
 <!-- TRABAJOS -->
 <section class="section" id="trabajos" aria-labelledby="trab-t">
   <div class="wrap">
-    <header class="sec-head reveal">
-      <p class="eyebrow"><span class="num">01</span> Trabajos terminados</p>
-      <h2 id="trab-t">Así quedan las casas que remodelamos.</h2>
-      <p class="sec-sub">Mueve la barra para comparar. Cada obra se entrega revisada contigo, punto por punto.</p>
+    <header class="sec-head sec-head--split reveal">
+      <div>
+        <p class="kicker">Trabajos</p>
+        <h2 id="trab-t">El trabajo <em>habla solo.</em></h2>
+      </div>
+      <p class="sec-sub">Acabados limpios, materiales bien elegidos y obra entregada a detalle. Toca una foto para verla completa.</p>
     </header>
-
-    <div class="works reveal">
-      <div class="tabs" role="tablist" aria-label="Elige un trabajo">
-        <button class="tab" role="tab" id="tab-bano" aria-controls="panel-works" aria-selected="true" data-before="assets/img/bano-antes.svg" data-after="assets/img/bano-despues.svg" data-alt-b="Baño antes: azulejo rosa roto, tina manchada y mueble viejo" data-alt-a="Baño después: regadera de cristal, mueble flotante y espejo redondo" data-title="Baño completo" data-meta="10 días · Cancel de cristal, azulejo y mueble flotante">Baño</button>
-        <button class="tab" role="tab" id="tab-fachada" aria-controls="panel-works" aria-selected="false" tabindex="-1" data-before="assets/img/fachada-antes.svg" data-after="assets/img/fachada-despues.svg" data-alt-b="Fachada antes: humedad, pintura caída y reja oxidada" data-alt-a="Fachada después: impermeabilizada, pintada y con reja nueva" data-title="Fachada e impermeabilización" data-meta="2 semanas · Impermeabilizante, pintura y herrería">Fachada y azotea</button>
-        <button class="tab" role="tab" id="tab-cocina" aria-controls="panel-works" aria-selected="false" tabindex="-1" data-before="assets/img/cocina-antes.svg" data-after="assets/img/cocina-despues.svg" data-alt-b="Cocina antes: muebles dañados y azulejo roto" data-alt-a="Cocina después: muebles nuevos y azulejo blanco" data-title="Cocina integral" data-meta="3 semanas · Muebles, cubierta, azulejo e iluminación">Cocina</button>
-      </div>
-      <div class="works__panel" id="panel-works" role="tabpanel" aria-labelledby="tab-bano">
-        <div class="ba ba--lg" data-ba style="--pos:50%">
-          <img class="ba__img" src="assets/img/bano-antes.svg" width="800" height="600" alt="Baño antes: azulejo rosa roto, tina manchada y mueble viejo" loading="lazy" decoding="async" data-role="before">
-          <img class="ba__img ba__after" src="assets/img/bano-despues.svg" width="800" height="600" alt="Baño después: regadera de cristal, mueble flotante y espejo redondo" loading="lazy" decoding="async" data-role="after">
-          <span class="ba__tag ba__tag--l">Antes</span><span class="ba__tag ba__tag--r">Después</span>
-          <span class="ba__handle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 6-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <input class="ba__range" type="range" min="0" max="100" value="50" aria-label="Desliza para comparar antes y después">
-        </div>
-        <div class="works__info glass">
-          <h3 data-role="title">Baño completo</h3>
-          <p data-role="meta">10 días · Cancel de cristal, azulejo y mueble flotante</p>
-          <a class="link-arrow" href="#cotizar">Quiero algo así <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-      <p class="sample-note">Imágenes ilustrativas de muestra. Aquí van las fotos reales de tus obras.</p>
-    </div>
+    <ul class="gallery">
+        <li class="g g--a reveal">
+          <button class="g__btn" type="button" data-full="assets/img/bano-mosaico.webp" data-title="Baño en madera y mosaico" data-meta="Doble lavabo flotante, piso tipo madera y cenefa de mosaico">
+            <img src="assets/img/bano-mosaico-640.webp" srcset="assets/img/bano-mosaico-640.webp 640w, assets/img/bano-mosaico.webp 1125w" sizes="(min-width: 960px) 50vw, 100vw" width="1125" height="750" alt="Baño en madera y mosaico: Doble lavabo flotante, piso tipo madera y cenefa de mosaico" loading="lazy" decoding="async">
+            <span class="g__cap"><b>Baño en madera y mosaico</b><span>Doble lavabo flotante, piso tipo madera y cenefa de mosaico</span></span>
+            <span class="g__zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+        </li>
+        <li class="g g--b reveal">
+          <button class="g__btn" type="button" data-full="assets/img/cocina-terracota.webp" data-title="Cocina integral" data-meta="Muebles en terracota, cubierta corrida y azulejo de talavera">
+            <img src="assets/img/cocina-terracota-640.webp" srcset="assets/img/cocina-terracota-640.webp 640w, assets/img/cocina-terracota.webp 1000w" sizes="(min-width: 960px) 50vw, 100vw" width="1000" height="750" alt="Cocina integral: Muebles en terracota, cubierta corrida y azulejo de talavera" loading="lazy" decoding="async">
+            <span class="g__cap"><b>Cocina integral</b><span>Muebles en terracota, cubierta corrida y azulejo de talavera</span></span>
+            <span class="g__zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+        </li>
+        <li class="g g--c reveal">
+          <button class="g__btn" type="button" data-full="assets/img/bano-cancel.webp" data-title="Baño con cancel de cristal" data-meta="Cancel corredizo, mueble de doble cajón y espejo con luz">
+            <img src="assets/img/bano-cancel-640.webp" srcset="assets/img/bano-cancel-640.webp 640w, assets/img/bano-cancel.webp 1124w" sizes="(min-width: 960px) 50vw, 100vw" width="1124" height="750" alt="Baño con cancel de cristal: Cancel corredizo, mueble de doble cajón y espejo con luz" loading="lazy" decoding="async">
+            <span class="g__cap"><b>Baño con cancel de cristal</b><span>Cancel corredizo, mueble de doble cajón y espejo con luz</span></span>
+            <span class="g__zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+        </li>
+        <li class="g g--d reveal">
+          <button class="g__btn" type="button" data-full="assets/img/bano-esquina.webp" data-title="Regadera de esquina" data-meta="Cancel pentagonal, lavabo sobre cubierta y muro texturizado">
+            <img src="assets/img/bano-esquina-640.webp" srcset="assets/img/bano-esquina-640.webp 640w, assets/img/bano-esquina.webp 1124w" sizes="(min-width: 960px) 50vw, 100vw" width="1124" height="750" alt="Regadera de esquina: Cancel pentagonal, lavabo sobre cubierta y muro texturizado" loading="lazy" decoding="async">
+            <span class="g__cap"><b>Regadera de esquina</b><span>Cancel pentagonal, lavabo sobre cubierta y muro texturizado</span></span>
+            <span class="g__zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+        </li>
+        <li class="g g--e reveal">
+          <button class="g__btn" type="button" data-full="assets/img/cocina-obra.webp" data-title="Obra en proceso" data-meta="Cocina y estancia: plafón de madera, iluminación y muebles a medida">
+            <img src="assets/img/cocina-obra-640.webp" srcset="assets/img/cocina-obra-640.webp 640w, assets/img/cocina-obra.webp 1125w" sizes="(min-width: 960px) 50vw, 100vw" width="1125" height="750" alt="Obra en proceso: Cocina y estancia: plafón de madera, iluminación y muebles a medida" loading="lazy" decoding="async">
+            <span class="g__cap"><b>Obra en proceso</b><span>Cocina y estancia: plafón de madera, iluminación y muebles a medida</span></span>
+            <span class="g__zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+        </li>
+    </ul>
+    <p class="sample-note">Fotos de muestra. Aquí van las fotos reales de tus obras.</p>
   </div>
 </section>
 
+<dialog class="lightbox" id="lightbox" aria-label="Foto ampliada">
+  <figure>
+    <img id="lb-img" src="" alt="">
+    <figcaption><b id="lb-title"></b><span id="lb-meta"></span></figcaption>
+  </figure>
+  <button class="lb__nav lb__prev" type="button" id="lb-prev" aria-label="Foto anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="lb__nav lb__next" type="button" id="lb-next" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="lb__close" type="button" id="lb-close" aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+</dialog>
+
 <!-- SERVICIOS -->
-<section class="section section--tint" id="servicios" aria-labelledby="serv-t">
-  <div class="wrap">
+<section class="section section--sand" id="servicios" aria-labelledby="serv-t">
+  <div class="wrap serv">
     <header class="sec-head reveal">
-      <p class="eyebrow"><span class="num">02</span> Servicios</p>
-      <h2 id="serv-t">Todo lo de tu casa, con un solo equipo.</h2>
+      <p class="kicker">Servicios</p>
+      <h2 id="serv-t">Todo lo de tu casa, <em>con un solo equipo.</em></h2>
+      <a class="btn btn--ink" href="#cotizar">Cotizar mi obra</a>
     </header>
-    <ul class="services">
-      <li class="svc reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="20" width="36" height="20" rx="2"/><path d="M6 26h36M18 20v20M30 20v20M10 8h28v8H10z"/></svg><h3>Cocinas integrales</h3><p>Diseño, muebles a medida, cubierta e instalación completa.</p></li>
-      <li class="svc reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 24h32v6a10 10 0 0 1-10 10H18A10 10 0 0 1 8 30zM14 24V10a4 4 0 0 1 8 0"/><path d="M16 40l-2 4M32 40l2 4"/></svg><h3>Baños</h3><p>Regaderas, cancel, azulejo, muebles y plomería nueva.</p></li>
-      <li class="svc reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 18 24 8l18 10M10 16v24h28V16"/><path d="M4 22l20-10 20 10" stroke-dasharray="3 3"/></svg><h3>Impermeabilización</h3><p>Azoteas y muros sin goteras, con garantía por escrito.</p></li>
-      <li class="svc reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="6" width="36" height="36" rx="2"/><path d="M6 18h36M6 30h36M18 6v36M30 6v36"/></svg><h3>Pisos y azulejo</h3><p>Porcelanato, cerámica y pisos laminados bien nivelados.</p></li>
-      <li class="svc reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 12h36M6 40h36M10 12v28M18 12v28M26 12v28M34 12v28M42 12v28"/><circle cx="14" cy="26" r="2"/></svg><h3>Herrería</h3><p>Rejas, portones, barandales y protecciones a medida.</p></li>
-      <li class="svc reveal"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 40V20h16v20M22 40V10h20v30M4 40h40"/><path d="M28 18h8M28 26h8"/></svg><h3>Albañilería y ampliaciones</h3><p>Cuartos, bardas, losas y acabados de obra negra a blanca.</p></li>
-    </ul>
+    <ol class="rows">
+      <li class="row reveal"><span class="row__n">01</span><div><h3>Cocinas integrales</h3><p>Diseño, muebles a medida, cubierta e instalación completa.</p></div></li>
+      <li class="row reveal"><span class="row__n">02</span><div><h3>Baños</h3><p>Regaderas, cancel, azulejo, muebles y plomería nueva.</p></div></li>
+      <li class="row reveal"><span class="row__n">03</span><div><h3>Impermeabilización</h3><p>Azoteas y muros sin goteras, con garantía por escrito.</p></div></li>
+      <li class="row reveal"><span class="row__n">04</span><div><h3>Pisos y azulejo</h3><p>Porcelanato, cerámica y pisos laminados bien nivelados.</p></div></li>
+      <li class="row reveal"><span class="row__n">05</span><div><h3>Herrería</h3><p>Rejas, portones, barandales y protecciones a medida.</p></div></li>
+      <li class="row reveal"><span class="row__n">06</span><div><h3>Albañilería y ampliaciones</h3><p>Cuartos, bardas, losas y acabados de obra negra a blanca.</p></div></li>
+    </ol>
   </div>
 </section>
 
@@ -152,8 +182,8 @@
 <section class="section" aria-labelledby="proc-t">
   <div class="wrap">
     <header class="sec-head reveal">
-      <p class="eyebrow"><span class="num">03</span> Cómo trabajamos</p>
-      <h2 id="proc-t">Cuatro pasos claros, sin vueltas.</h2>
+      <p class="kicker">Cómo trabajamos</p>
+      <h2 id="proc-t">Cuatro pasos claros, <em>sin vueltas.</em></h2>
     </header>
     <ol class="steps">
       <li class="step reveal"><span class="step__n">1</span><h3>Nos cuentas tu obra</h3><p>Llenas el formulario en 1 minuto y te contestamos por WhatsApp.</p></li>
@@ -164,13 +194,13 @@
   </div>
 </section>
 
-<!-- GARANTÍAS / AUTORIDAD -->
+<!-- GARANTÍAS -->
 <section class="section section--dark" id="garantias" aria-labelledby="gar-t">
   <div class="wrap gar">
     <header class="sec-head sec-head--dark reveal">
-      <p class="eyebrow eyebrow--dark"><span class="num">04</span> Garantías</p>
-      <h2 id="gar-t">Respondemos por nuestro trabajo.</h2>
-      <p class="sec-sub">Lo que prometemos queda por escrito, firmado por nosotros.</p>
+      <p class="kicker kicker--light">Garantías</p>
+      <h2 id="gar-t">Respondemos por <em>nuestro trabajo.</em></h2>
+      <p class="sec-sub">Lo que prometemos queda por escrito y firmado por nosotros.</p>
     </header>
     <ul class="stats reveal" aria-label="Cifras del negocio">
       <li><b>15+</b><span>años de experiencia</span></li>
@@ -178,10 +208,10 @@
       <li><b>1 año</b><span>de garantía en mano de obra</span></li>
     </ul>
     <ul class="gar__list">
-      <li class="glass--dark reveal"><h3>Garantía por escrito</h3><p>1 año en mano de obra. Impermeabilización con garantía de 3 a 5 años, según el material.</p></li>
-      <li class="glass--dark reveal"><h3>Precio respetado</h3><p>El presupuesto aprobado no cambia sin tu autorización por escrito.</p></li>
-      <li class="glass--dark reveal"><h3>Pagos por avance</h3><p>Anticipo para materiales y el resto conforme ves avanzar la obra.</p></li>
-      <li class="glass--dark reveal"><h3>Obra limpia</h3><p>Cuidamos tus muebles y retiramos el escombro al terminar.</p></li>
+      <li class="reveal"><h3>Garantía por escrito</h3><p>1 año en mano de obra. Impermeabilización con garantía de 3 a 5 años, según el material.</p></li>
+      <li class="reveal"><h3>Precio respetado</h3><p>El presupuesto aprobado no cambia sin tu autorización por escrito.</p></li>
+      <li class="reveal"><h3>Pagos por avance</h3><p>Anticipo para materiales y el resto conforme ves avanzar la obra.</p></li>
+      <li class="reveal"><h3>Obra limpia</h3><p>Cuidamos tus muebles y retiramos el escombro al terminar.</p></li>
     </ul>
     <p class="sample-note sample-note--dark">Cifras y garantías de ejemplo. Se cambian por las del negocio real.</p>
   </div>
@@ -191,25 +221,25 @@
 <section class="section" aria-labelledby="test-t">
   <div class="wrap">
     <header class="sec-head reveal">
-      <p class="eyebrow"><span class="num">05</span> Clientes</p>
-      <h2 id="test-t">Lo que dicen quienes ya remodelaron.</h2>
+      <p class="kicker">Clientes</p>
+      <h2 id="test-t">Lo que dicen quienes <em>ya remodelaron.</em></h2>
       <p class="badge-sample">Testimonios de ejemplo · aquí van las reseñas reales de tus clientes</p>
     </header>
     <ul class="quotes">
       <li class="quote reveal">
         <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
         <blockquote>“Nos dijeron tres semanas para la cocina y en tres semanas quedó. Cada viernes nos mandaban fotos.”</blockquote>
-        <p class="quote__by"><span class="avatar" aria-hidden="true">ML</span>Cliente de ejemplo · Cocina integral</p>
+        <p class="quote__by">Cliente de ejemplo<span>Cocina integral</span></p>
       </li>
       <li class="quote reveal">
         <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
         <blockquote>“Ya no se mete el agua en la recámara. Nos dieron la garantía en una hoja firmada.”</blockquote>
-        <p class="quote__by"><span class="avatar" aria-hidden="true">JR</span>Cliente de ejemplo · Impermeabilización</p>
+        <p class="quote__by">Cliente de ejemplo<span>Impermeabilización</span></p>
       </li>
       <li class="quote reveal">
         <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
         <blockquote>“El presupuesto fue el mismo de principio a fin. Dejaron todo limpio.”</blockquote>
-        <p class="quote__by"><span class="avatar" aria-hidden="true">AG</span>Cliente de ejemplo · Baño completo</p>
+        <p class="quote__by">Cliente de ejemplo<span>Baño completo</span></p>
       </li>
     </ul>
   </div>
@@ -219,54 +249,53 @@
 <section class="section section--quote" id="cotizar" aria-labelledby="cot-t">
   <div class="wrap quote-grid">
     <div class="quote-copy reveal">
-      <p class="eyebrow eyebrow--dark"><span class="num">06</span> Cotiza tu obra</p>
-      <h2 id="cot-t">Cuéntanos tu obra en 4 pasos y te contestamos por WhatsApp.</h2>
-      <p class="lead">Solo toca las opciones. Al final se abre WhatsApp con tu mensaje listo para enviar.</p>
-      <ul class="mini-proof">
-        <li>Sin registrarte</li><li>Sin compromiso</li><li>Respuesta el mismo día hábil</li>
+      <p class="kicker kicker--light">Cotiza tu obra</p>
+      <h2 id="cot-t">Cuéntanos tu proyecto. <em>Te respondemos hoy.</em></h2>
+      <p class="lead">Toca las opciones, son 4 pasos. Al final se abre WhatsApp con tu mensaje listo para enviar.</p>
+      <ul class="perks">
+        <li>Sin registrarte</li>
+        <li>Sin compromiso</li>
+        <li>Visita y medidas sin costo</li>
       </ul>
+      <p class="quote-copy__from">Tomamos obras desde <b data-cfg="minBudgetText">$30,000</b>.</p>
     </div>
 
     <form class="wizard glass" id="wizard" novalidate>
       <div class="wizard__top">
+        <ol class="dots" id="wz-dots" aria-hidden="true"><li></li><li></li><li></li><li></li><li></li></ol>
         <p class="wizard__count" id="wz-count" aria-live="polite">Paso 1 de 4</p>
-        <div class="wizard__bar" aria-hidden="true"><span id="wz-bar"></span></div>
       </div>
+      <p class="picked" id="wz-picked" aria-hidden="true"></p>
 
-      <!-- Paso 1 -->
       <fieldset class="wz-step is-active" data-step="1">
         <legend>¿Qué obra necesitas?</legend>
-        <div class="opts opts--2" id="opt-tipo"></div>
+        <div class="tiles tiles--3" id="opt-tipo"></div>
       </fieldset>
 
-      <!-- Paso 2 -->
       <fieldset class="wz-step" data-step="2" hidden>
         <legend>¿En qué zona es la obra?</legend>
-        <div class="opts opts--2" id="opt-zona"></div>
+        <div class="tiles tiles--chips" id="opt-zona"></div>
         <label class="field">
           <span>O escribe tu colonia o municipio</span>
           <input type="text" id="zona-otra" name="zonaOtra" autocomplete="address-level3" placeholder="Ej. Col. Centro" maxlength="60">
         </label>
       </fieldset>
 
-      <!-- Paso 3 -->
       <fieldset class="wz-step" data-step="3" hidden>
         <legend>¿Para cuándo la necesitas?</legend>
-        <div class="opts" id="opt-urgencia"></div>
+        <div class="tiles tiles--urg" id="opt-urgencia"></div>
       </fieldset>
 
-      <!-- Paso 4 -->
       <fieldset class="wz-step" data-step="4" hidden>
         <legend>¿Cuánto piensas invertir?</legend>
         <p class="wz-help">Un rango aproximado nos ayuda a proponerte materiales que sí te convengan.</p>
-        <div class="opts" id="opt-presupuesto"></div>
+        <div class="tiles tiles--bud" id="opt-presupuesto"></div>
         <div class="wz-alert" id="wz-low" role="alert" hidden>
           <b>Gracias por tu interés.</b>
           <p id="wz-low-msg"></p>
         </div>
       </fieldset>
 
-      <!-- Paso 5: datos -->
       <fieldset class="wz-step" data-step="5" hidden>
         <legend>¿A quién le contestamos?</legend>
         <label class="field">
@@ -282,20 +311,19 @@
         <div class="summary" id="wz-summary" aria-label="Resumen de tu solicitud"></div>
       </fieldset>
 
-      <!-- Listo -->
       <div class="wz-step wz-done" data-step="6" hidden tabindex="-1">
-        <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="3"/><path d="m14 25 7 7 13-15" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2"/><path class="tick" d="m14 25 7 7 13-15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>¡Listo! Se abrió WhatsApp.</h3>
         <p>Solo presiona <b>Enviar</b> en WhatsApp. Te contestamos lo antes posible.</p>
-        <a class="btn btn--primary" id="wz-reopen" href="#" target="_blank" rel="noopener">Abrir WhatsApp otra vez</a>
+        <a class="btn btn--brass" id="wz-reopen" href="#" target="_blank" rel="noopener">Abrir WhatsApp otra vez</a>
         <button class="btn btn--text" type="button" id="wz-restart">Hacer otra cotización</button>
       </div>
 
       <div class="wizard__nav" id="wz-nav">
         <button class="btn btn--text" type="button" id="wz-back" hidden>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Atrás
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Atrás
         </button>
-        <button class="btn btn--primary btn--grow" type="button" id="wz-next" disabled>Siguiente</button>
+        <button class="btn btn--brass btn--grow" type="button" id="wz-next" disabled>Siguiente</button>
         <button class="btn btn--wa btn--grow" type="submit" id="wz-send" hidden>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3z"/></svg>
           Enviar por WhatsApp
@@ -308,47 +336,41 @@
 
 <!-- UBICACIÓN Y RESEÑAS -->
 <section class="section" id="ubicacion" aria-labelledby="ubi-t">
-  <div class="wrap ubi">
+  <div class="wrap">
     <header class="sec-head reveal">
-      <p class="eyebrow"><span class="num">07</span> Ubicación y reseñas</p>
-      <h2 id="ubi-t">Encuéntranos en Google Maps.</h2>
+      <p class="kicker">Ubicación y reseñas</p>
+      <h2 id="ubi-t">Encuéntranos en <em>Google Maps.</em></h2>
       <p class="sec-sub">Revisa nuestras reseñas o déjanos la tuya al terminar tu obra.</p>
     </header>
     <div class="ubi__grid">
-      <a class="map reveal" id="map-link" href="https://www.google.com/maps" target="_blank" rel="noopener" aria-label="Abrir ubicación en Google Maps">
-        <svg viewBox="0 0 600 340" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><rect width="600" height="340" fill="#e9e5dd"/><path d="M0 230 600 120M120 0l80 340M380 0l-40 340M0 60h600" stroke="#fff" stroke-width="18"/><path d="M0 230 600 120M120 0l80 340M380 0l-40 340" stroke="#d8d2c6" stroke-width="2" fill="none"/><path d="M430 200q60-20 170 10v130H420z" fill="#cfdcc8"/><path d="M0 0h90v40H0z" fill="#cfdcc8"/><path d="M220 260h90v80h-90zM420 20h120v70H420z" fill="#ddd7cb"/><g transform="translate(300 150)"><circle r="44" fill="#c27a45" opacity=".18"/><path d="M0 18s-22-24-22-40a22 22 0 0 1 44 0c0 16-22 40-22 40z" fill="#c27a45"/><circle cy="-22" r="8" fill="#fff"/></g></svg>
-        <span class="map__cta glass">Cómo llegar <span aria-hidden="true">↗</span></span>
-      </a>
-      <div class="reviews glass reveal">
+      <div class="map reveal">
+        <div class="map__frame" id="map-frame">
+          <svg class="map__art" viewBox="0 0 600 340" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><rect width="600" height="340" fill="#ece6da"/><path d="M0 230 600 120M120 0l80 340M380 0l-40 340M0 60h600" stroke="#fffdf8" stroke-width="18"/><path d="M430 200q60-20 170 10v130H420z" fill="#d3dcc6"/><path d="M0 0h90v40H0z" fill="#d3dcc6"/><path d="M220 260h90v80h-90zM420 20h120v70H420z" fill="#e0d8c8"/><g transform="translate(300 150)"><circle r="44" fill="#b08d57" opacity=".2"/><path d="M0 18s-22-24-22-40a22 22 0 0 1 44 0c0 16-22 40-22 40z" fill="#b08d57"/><circle cy="-22" r="8" fill="#fff"/></g></svg>
+          <button class="map__load glass" type="button" id="map-load">Ver el mapa interactivo</button>
+        </div>
+      </div>
+      <div class="reviews reveal">
+        <p class="reviews__k">Reseñas en Google</p>
         <p class="reviews__score"><b>4.9</b><span class="stars" aria-hidden="true">★★★★★</span></p>
-        <p class="reviews__count">Calificación de ejemplo en Google</p>
-        <a class="btn btn--primary btn--block" id="review-link" href="https://www.google.com/maps" target="_blank" rel="noopener">Déjanos tu reseña</a>
-        <a class="btn btn--ghost-dark btn--block" id="map-link-2" href="https://www.google.com/maps" target="_blank" rel="noopener">Ver en Google Maps</a>
+        <p class="reviews__count">Calificación de ejemplo</p>
+        <a class="btn btn--brass btn--block" id="review-link" href="https://www.google.com/maps" target="_blank" rel="noopener">Déjanos tu reseña</a>
+        <a class="btn btn--ink-line btn--block" id="map-link" href="https://www.google.com/maps" target="_blank" rel="noopener">Abrir en Google Maps</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- GUARDAR / COMPARTIR -->
-<section class="section section--tint" aria-labelledby="save-t">
+<section class="section section--sand" aria-labelledby="save-t">
   <div class="wrap save">
     <div class="save__copy reveal">
-      <p class="eyebrow"><span class="num">08</span> Tenlo a la mano</p>
-      <h2 id="save-t">Guárdanos en tu celular.</h2>
+      <p class="kicker">Tenlo a la mano</p>
+      <h2 id="save-t">Guárdanos en <em>tu celular.</em></h2>
       <p class="sec-sub">Agrega esta página a tu pantalla de inicio o compártela con quien la necesite.</p>
       <div class="save__btns">
-        <button class="btn btn--primary" type="button" id="btn-install">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8v6m-3-3h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          Agregar a mi pantalla
-        </button>
-        <button class="btn btn--ghost-dark" type="button" id="btn-share">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="6" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="19" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="m8.6 10.7 6.8-4M8.6 13.3l6.8 4" stroke="currentColor" stroke-width="2"/></svg>
-          Compartir
-        </button>
-        <button class="btn btn--ghost-dark" type="button" id="btn-vcard">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          Guardar contacto
-        </button>
+        <button class="btn btn--ink" type="button" id="btn-install">Agregar a mi pantalla</button>
+        <button class="btn btn--ink-line" type="button" id="btn-share">Compartir</button>
+        <button class="btn btn--ink-line" type="button" id="btn-vcard">Guardar contacto</button>
       </div>
       <div class="install-help" id="install-help" hidden>
         <p><b>En iPhone:</b> toca <span class="kbd">Compartir</span> abajo y luego <span class="kbd">Agregar a inicio</span>.</p>
@@ -367,8 +389,8 @@
 <section class="section" aria-labelledby="faq-t">
   <div class="wrap faq">
     <header class="sec-head reveal">
-      <p class="eyebrow"><span class="num">09</span> Preguntas frecuentes</p>
-      <h2 id="faq-t">Lo que más nos preguntan.</h2>
+      <p class="kicker">Preguntas frecuentes</p>
+      <h2 id="faq-t">Lo que más <em>nos preguntan.</em></h2>
     </header>
     <div class="faq__list">
       <details class="reveal"><summary>¿Cobran la visita?</summary><p>No. La visita para medir y darte opciones es sin costo dentro de nuestra zona de servicio.</p></details>
@@ -376,6 +398,15 @@
       <details class="reveal"><summary>¿Dan factura?</summary><p>Sí, si la necesitas. Avísanos al pedir tu presupuesto.</p></details>
       <details class="reveal"><summary>¿Cuánto tarda una remodelación?</summary><p>Un baño, de 1 a 2 semanas. Una cocina integral, de 3 a 4 semanas. Te damos la fecha exacta en el presupuesto.</p></details>
     </div>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="final" aria-labelledby="fin-t">
+  <div class="wrap final__in">
+    <h2 id="fin-t">Tu obra empieza con <em>un mensaje.</em></h2>
+    <p>Cuéntanos qué quieres remodelar y te respondemos el mismo día hábil.</p>
+    <a class="btn btn--brass btn--lg" href="#cotizar">Quiero mi presupuesto</a>
   </div>
 </section>
 </main>
@@ -387,9 +418,8 @@
   </div>
 </footer>
 
-<!-- Barra fija en celular -->
 <div class="mbar" id="mbar">
-  <a class="btn btn--primary btn--grow" href="#cotizar">Cotizar mi obra</a>
+  <a class="btn btn--brass btn--grow" href="#cotizar">Cotizar mi obra</a>
   <a class="btn btn--icon" id="call-link" href="tel:" aria-label="Llamar por teléfono">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
   </a>

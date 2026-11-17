@@ -15,19 +15,33 @@ const CONFIG = {
 
   // Opciones de presupuesto. "max" es el tope del rango; si max <= minBudget, el rango no califica.
   budgets: [
-    { label: 'Menos de $30,000', max: 30000 },
-    { label: '$30,000 a $80,000', max: 80000 },
-    { label: '$80,000 a $200,000', max: 200000 },
-    { label: 'Más de $200,000', max: Infinity },
+    { label: 'Menos de $30,000', sub: 'Reparaciones y detalles', max: 30000 },
+    { label: '$30,000 a $80,000', sub: 'Baño o un espacio completo', max: 80000 },
+    { label: '$80,000 a $200,000', sub: 'Cocina integral o varios espacios', max: 200000 },
+    { label: 'Más de $200,000', sub: 'Remodelación mayor o ampliación', max: Infinity },
   ],
 
-  services: ['Cocina integral', 'Baño', 'Impermeabilización', 'Pisos y azulejo', 'Herrería', 'Albañilería o ampliación'],
+  services: [
+    { label: 'Cocina integral', icon: 'cocina' },
+    { label: 'Baño', icon: 'bano' },
+    { label: 'Impermeabilización', icon: 'techo' },
+    { label: 'Pisos y azulejo', icon: 'piso' },
+    { label: 'Herrería', icon: 'reja' },
+    { label: 'Albañilería o ampliación', icon: 'muro' },
+  ],
   zones: ['Centro', 'Norte', 'Sur', 'Oriente', 'Poniente', 'Zona metropolitana'],
-  urgency: ['Lo antes posible', 'En 1 a 3 meses', 'Solo estoy cotizando'],
+  urgency: [
+    { label: 'Lo antes posible', sub: 'Quiero empezar este mes', icon: 'rayo' },
+    { label: 'En 1 a 3 meses', sub: 'Ya lo tengo planeado', icon: 'calendario' },
+    { label: 'Solo estoy cotizando', sub: 'Quiero comparar opciones', icon: 'lupa' },
+  ],
 
-  // Enlaces de Google: ficha del negocio y enlace directo para dejar reseña.
-  mapsUrl: 'https://www.google.com/maps',
-  reviewsUrl: 'https://www.google.com/maps',
+  // Ubicación en Google Maps (ficha del negocio, reseñas y mapa incrustado).
+  mapsUrl: 'https://www.google.com/maps/place/Casa+del+Valle:+Decks,+Tapices,+Cortinas+y+Persianas/@25.6611881,-100.3029777,17z/data=!3m1!4b1!4m6!3m5!1s0x8662bfcce28db05f:0x23b0aa2322c97a64!8m2!3d25.6611881!4d-100.3029777!16s%2Fg%2F1th49tw7',
+  reviewsUrl: 'https://www.google.com/maps/place/Casa+del+Valle:+Decks,+Tapices,+Cortinas+y+Persianas/@25.6611881,-100.3029777,17z/data=!3m1!4b1!4m6!3m5!1s0x8662bfcce28db05f:0x23b0aa2322c97a64!8m2!3d25.6611881!4d-100.3029777!16s%2Fg%2F1th49tw7',
+  mapLat: 25.6611881,
+  mapLng: -100.3029777,
+
   siteUrl: 'https://remodelaciones.heyelevu.com',
 };
 /* ========================================================= */
@@ -40,19 +54,15 @@ const CONFIG = {
   const money = (n) => '$' + n.toLocaleString('es-MX');
 
   /* ---------- Textos configurables ---------- */
-  $$('[data-cfg]').forEach((el) => {
-    const v = CONFIG[el.dataset.cfg];
-    if (v) el.textContent = v;
-  });
+  const cfgText = { ...CONFIG, minBudgetText: money(CONFIG.minBudget) };
+  $$('[data-cfg]').forEach((el) => { const v = cfgText[el.dataset.cfg]; if (v) el.textContent = v; });
   const setHref = (id, url) => { const el = document.getElementById(id); if (el && url) el.href = url; };
   setHref('map-link', CONFIG.mapsUrl);
-  setHref('map-link-2', CONFIG.mapsUrl);
   setHref('review-link', CONFIG.reviewsUrl);
   const call = $('#call-link');
   if (call) {
     const digits = CONFIG.telefono.replace(/\D/g, '');
-    if (digits) call.href = 'tel:+52' + digits.slice(-10);
-    else call.remove();
+    if (digits) call.href = 'tel:+52' + digits.slice(-10); else call.remove();
   }
 
   /* ---------- Aparición al hacer scroll ---------- */
@@ -60,91 +70,137 @@ const CONFIG = {
   if (reduceMotion || !('IntersectionObserver' in window)) {
     reveals.forEach((el) => el.classList.add('is-in'));
   } else {
-    // Escalonado suave dentro de cada grupo
     reveals.forEach((el) => {
-      const sib = el.parentElement ? Array.from(el.parentElement.children).filter((c) => c.classList.contains('reveal')) : [];
+      const sib = Array.from(el.parentElement.children).filter((c) => c.classList.contains('reveal'));
       const i = sib.indexOf(el);
-      if (i > 0) el.style.setProperty('--d', Math.min(i, 5) * 0.08 + 's');
+      if (i > 0) el.style.setProperty('--d', Math.min(i, 5) * 0.09 + 's');
     });
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
-      });
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     reveals.forEach((el) => io.observe(el));
   }
 
-  /* ---------- Comparador antes / después ---------- */
-  function initBA(box) {
-    const range = $('.ba__range', box);
-    if (!range) return;
-    const set = (v) => { box.style.setProperty('--pos', v + '%'); };
-    range.addEventListener('input', () => set(range.value));
-    range.addEventListener('pointerdown', () => box.classList.add('is-drag'));
-    window.addEventListener('pointerup', () => box.classList.remove('is-drag'));
-    set(range.value);
-  }
-  $$('[data-ba]').forEach(initBA);
+  /* ---------- Hero: presentación de fotos tipo video ---------- */
+  const hero = $('.hero');
+  const slides = $$('.hero__slide');
+  const bars = $('#reel-bars');
+  const capEl = $('#reel-cap');
+  const toggle = $('#reel-toggle');
+  if (hero && slides.length && bars) {
+    const DUR = 7000;
+    bars.style.setProperty('--dur', DUR + 'ms');
+    slides.forEach(() => { const s = document.createElement('span'); s.append(document.createElement('i')); bars.append(s); });
+    const segs = Array.from(bars.children);
+    let idx = 0; let timer = null; let paused = reduceMotion; let started = 0; let remaining = DUR;
 
-  // Pista animada en el comparador principal (una sola vez)
-  const heroBA = $('.hero [data-ba]');
-  if (heroBA && !reduceMotion) {
-    const r = $('.ba__range', heroBA);
-    let touched = false;
-    r.addEventListener('pointerdown', () => { touched = true; }, { once: true });
-    const frames = [50, 32, 68, 50];
-    let k = 0;
-    setTimeout(function step() {
-      if (touched || k >= frames.length) return;
-      animateTo(heroBA, r, frames[k++], 650, () => setTimeout(step, 120));
-    }, 1400);
-  }
-  function animateTo(box, r, to, dur, done) {
-    const from = Number(r.value);
-    const t0 = performance.now();
-    (function tick(now) {
-      const p = Math.min(1, (now - t0) / dur);
-      const e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-      const v = from + (to - from) * e;
-      r.value = v; box.style.setProperty('--pos', v + '%');
-      if (p < 1) requestAnimationFrame(tick); else if (done) done();
-    })(t0);
-  }
-
-  /* ---------- Pestañas de trabajos ---------- */
-  const tabs = $$('.tab');
-  const panel = $('#panel-works');
-  if (tabs.length && panel) {
-    const pBA = $('[data-ba]', panel);
-    const select = (tab, focus) => {
-      tabs.forEach((t) => {
-        const on = t === tab;
-        t.setAttribute('aria-selected', on);
-        t.tabIndex = on ? 0 : -1;
-      });
-      panel.setAttribute('aria-labelledby', tab.id);
-      const b = $('[data-role="before"]', panel);
-      const a = $('[data-role="after"]', panel);
-      b.src = tab.dataset.before; b.alt = tab.dataset.altB;
-      a.src = tab.dataset.after; a.alt = tab.dataset.altA;
-      $('[data-role="title"]', panel).textContent = tab.dataset.title;
-      $('[data-role="meta"]', panel).textContent = tab.dataset.meta;
-      const r = $('.ba__range', pBA); r.value = 50; pBA.style.setProperty('--pos', '50%');
-      pBA.classList.remove('is-swap'); void pBA.offsetWidth; pBA.classList.add('is-swap');
-      if (focus) tab.focus();
+    const load = (img) => {
+      if (img.dataset.src) {
+        if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+        img.src = img.dataset.src;
+        delete img.dataset.src; delete img.dataset.srcset;
+      }
     };
-    tabs.forEach((t, i) => {
-      t.addEventListener('click', () => select(t));
-      t.addEventListener('keydown', (e) => {
-        let n = null;
-        if (e.key === 'ArrowRight') n = tabs[(i + 1) % tabs.length];
-        if (e.key === 'ArrowLeft') n = tabs[(i - 1 + tabs.length) % tabs.length];
-        if (e.key === 'Home') n = tabs[0];
-        if (e.key === 'End') n = tabs[tabs.length - 1];
-        if (n) { e.preventDefault(); select(n, true); }
+    const paint = () => {
+      slides.forEach((s, i) => s.classList.toggle('is-on', i === idx));
+      segs.forEach((s, i) => {
+        s.classList.toggle('done', i < idx);
+        s.classList.remove('now'); void s.offsetWidth;
+        if (i === idx) s.classList.add('now');
       });
+      capEl.textContent = slides[idx].dataset.cap || '';
+      load(slides[(idx + 1) % slides.length]);
+    };
+    const schedule = (ms) => {
+      clearTimeout(timer); started = Date.now(); remaining = ms;
+      timer = setTimeout(() => { idx = (idx + 1) % slides.length; paint(); schedule(DUR); }, ms);
+    };
+    const setPaused = (p) => {
+      paused = p;
+      hero.classList.toggle('is-paused', p);
+      toggle.setAttribute('aria-label', p ? 'Reproducir presentación de fotos' : 'Pausar presentación de fotos');
+      if (p) { clearTimeout(timer); remaining = Math.max(0, remaining - (Date.now() - started)); }
+      else schedule(remaining || DUR);
+    };
+    toggle.addEventListener('click', () => setPaused(!paused));
+    // Pausa cuando el hero no se ve (ahorra batería y datos)
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => {
+        if (paused) return;
+        if (e.isIntersecting) schedule(remaining || DUR);
+        else { clearTimeout(timer); remaining = Math.max(0, remaining - (Date.now() - started)); }
+      }, { threshold: 0.05 }).observe(hero);
+    }
+    paint();
+    if (paused) { hero.classList.add('is-paused'); toggle.setAttribute('aria-label', 'Reproducir presentación de fotos'); }
+  }
+
+  /* ---------- Galería con vista ampliada ---------- */
+  const lb = $('#lightbox');
+  const items = $$('.g__btn');
+  if (lb && items.length && typeof lb.showModal === 'function') {
+    const img = $('#lb-img'); const t = $('#lb-title'); const m = $('#lb-meta');
+    let cur = 0; let opener = null;
+    const show = (i) => {
+      cur = (i + items.length) % items.length;
+      const b = items[cur];
+      img.src = b.dataset.full; img.alt = b.dataset.title + ': ' + b.dataset.meta;
+      t.textContent = b.dataset.title; m.textContent = b.dataset.meta;
+      img.style.animation = 'none'; void img.offsetWidth; img.style.animation = '';
+    };
+    items.forEach((b, i) => b.addEventListener('click', () => { opener = b; show(i); lb.showModal(); }));
+    $('#lb-prev').addEventListener('click', () => show(cur - 1));
+    $('#lb-next').addEventListener('click', () => show(cur + 1));
+    $('#lb-close').addEventListener('click', () => lb.close());
+    lb.addEventListener('click', (e) => { if (e.target === lb || e.target.tagName === 'FIGURE') lb.close(); });
+    lb.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') show(cur + 1);
+      if (e.key === 'ArrowLeft') show(cur - 1);
+    });
+    lb.addEventListener('close', () => { if (opener) opener.focus(); });
+    // Deslizar con el dedo
+    let x0 = null;
+    lb.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+      x0 = null;
+    });
+  } else {
+    // Sin <dialog>: abrir la foto directo
+    items.forEach((b) => b.addEventListener('click', () => window.open(b.dataset.full, '_blank')));
+  }
+
+  /* ---------- Mapa: se carga solo al tocarlo (página más rápida) ---------- */
+  const mapBtn = $('#map-load');
+  if (mapBtn) {
+    mapBtn.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.title = 'Mapa de ubicación';
+      f.loading = 'lazy';
+      f.referrerPolicy = 'no-referrer-when-downgrade';
+      f.src = `https://maps.google.com/maps?q=${CONFIG.mapLat},${CONFIG.mapLng}&z=16&hl=es&output=embed`;
+      const frame = $('#map-frame');
+      frame.append(f);
+      mapBtn.remove();
+      const art = $('.map__art', frame); if (art) art.remove();
     });
   }
+
+  /* ---------- Iconos del formulario ---------- */
+  const ICONS = {
+    cocina: '<path d="M6 22h36v18H6zM6 28h36M18 22v18M30 22v18M10 6h28v10H10zM22 32h-6M34 32h-6"/>',
+    bano: '<path d="M6 24h36v5a11 11 0 0 1-11 11H17A11 11 0 0 1 6 29zM12 24V11a4 4 0 0 1 8 0v1M15 40l-2 4M33 40l2 4"/>',
+    techo: '<path d="M4 22 24 8l20 14M9 19v21h30V19"/><path d="M18 28c0 2-2 3-2 5a2 2 0 0 0 4 0c0-2-2-3-2-5zM30 26c0 2-2 3-2 5a2 2 0 0 0 4 0c0-2-2-3-2-5z"/>',
+    piso: '<path d="M6 6h36v36H6zM6 18h36M6 30h36M18 6v36M30 6v36"/>',
+    reja: '<path d="M4 12h40M4 40h40M10 8v34M18 8v34M26 8v34M34 8v34M42 8v34M10 8l0-2M18 8v-2M26 8v-2M34 8v-2M42 8v-2"/>',
+    muro: '<path d="M4 10h40v30H4zM4 20h40M4 30h40M16 10v10M32 10v10M10 20v10M24 20v10M38 20v10M16 30v10M32 30v10"/>',
+    rayo: '<path d="M26 4 10 27h12l-2 17 16-23H24z"/>',
+    calendario: '<path d="M6 10h36v32H6zM6 19h36M15 4v10M33 4v10M14 27h4M22 27h4M30 27h4M14 34h4M22 34h4"/>',
+    lupa: '<circle cx="21" cy="21" r="13"/><path d="m31 31 12 12"/>',
+  };
+  const svg = (name) => `<svg viewBox="0 0 48 48" aria-hidden="true">${ICONS[name] || ''}</svg>`;
 
   /* ---------- Formulario de 4 pasos ---------- */
   const form = $('#wizard');
@@ -155,7 +211,8 @@ const CONFIG = {
     const btnBack = $('#wz-back');
     const btnSend = $('#wz-send');
     const count = $('#wz-count');
-    const bar = $('#wz-bar');
+    const dots = $$('#wz-dots li');
+    const picked = $('#wz-picked');
     const lowBox = $('#wz-low');
     const zonaOtra = $('#zona-otra');
     const nombre = $('#f-nombre');
@@ -163,26 +220,25 @@ const CONFIG = {
     let current = 1;
     let pointerPick = false;
 
-    const buildOpts = (containerId, name, items, toLabel) => {
-      const c = document.getElementById(containerId);
-      items.forEach((item, i) => {
-        const label = document.createElement('label');
-        label.className = 'opt';
-        const input = document.createElement('input');
-        input.type = 'radio'; input.name = name; input.value = String(i);
-        const span = document.createElement('span');
-        span.textContent = toLabel(item);
-        label.append(input, span);
-        c.append(label);
-      });
-    };
-    buildOpts('opt-tipo', 'tipo', CONFIG.services, (s) => s);
-    buildOpts('opt-zona', 'zona', CONFIG.zones, (s) => s);
-    buildOpts('opt-urgencia', 'urgencia', CONFIG.urgency, (s) => s);
-    buildOpts('opt-presupuesto', 'presupuesto', CONFIG.budgets, (b) => b.label);
-    if (!CONFIG.zones.length) $('#opt-zona').remove();
-
     const qualifies = (b) => b && b.max > CONFIG.minBudget;
+
+    const tile = (name, i, html, extra = '') => {
+      const label = document.createElement('label');
+      label.className = 'tile ' + extra;
+      label.innerHTML = `<input type="radio" name="${name}" value="${i}"><span class="tile__body">${html}</span>`;
+      return label;
+    };
+    const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+    CONFIG.services.forEach((s, i) => $('#opt-tipo').append(tile('tipo', i, `${svg(s.icon)}<span>${esc(s.label)}</span>`)));
+    CONFIG.zones.forEach((z, i) => $('#opt-zona').append(tile('zona', i, `<span>${esc(z)}</span>`)));
+    if (!CONFIG.zones.length) $('#opt-zona').remove();
+    CONFIG.urgency.forEach((u, i) => $('#opt-urgencia').append(tile('urgencia', i, `${svg(u.icon)}<span>${esc(u.label)}<span class="tile__sub">${esc(u.sub)}</span></span>`)));
+    CONFIG.budgets.forEach((b, i) => {
+      const lvl = Math.min(4, i + 1);
+      const barsHtml = `<span class="bars" aria-hidden="true">${[1, 2, 3, 4].map((n) => `<i class="${n <= lvl ? 'on' : ''}"></i>`).join('')}</span>`;
+      $('#opt-presupuesto').append(tile('presupuesto', i, `${barsHtml}<span>${esc(b.label)}<span class="tile__sub">${esc(b.sub || '')}</span></span>`, qualifies(b) ? '' : 'tile--low'));
+    });
 
     const canAdvance = () => {
       switch (current) {
@@ -195,58 +251,55 @@ const CONFIG = {
     };
     const refresh = () => { btnNext.disabled = !canAdvance(); };
 
+    const renderPicked = () => {
+      const vals = [state.tipo, current > 2 && state.zona, current > 3 && state.urgencia].filter(Boolean);
+      picked.replaceChildren(...vals.map((v) => { const s = document.createElement('span'); s.textContent = v; return s; }));
+    };
+
     const show = (n, focus = true) => {
       current = n;
-      steps.forEach((s) => {
-        const on = Number(s.dataset.step) === n;
-        s.hidden = !on;
-        s.classList.toggle('is-active', on);
-      });
+      steps.forEach((s) => { const on = Number(s.dataset.step) === n; s.hidden = !on; s.classList.toggle('is-active', on); });
       const done = n === 6;
       form.classList.toggle('is-done', done);
       btnBack.hidden = n === 1 || done;
       btnNext.hidden = n >= 5;
       btnSend.hidden = n !== 5;
-      count.textContent = n <= 4 ? `Paso ${n} de 4` : 'Último paso: tus datos';
-      bar.style.width = Math.min(n, 5) * 20 + '%';
+      count.textContent = n <= 4 ? `Paso ${n} de 4` : 'Último paso';
+      dots.forEach((d, i) => { d.classList.toggle('is-on', i < n - 1); d.classList.toggle('is-now', i === n - 1); });
       if (n === 5) renderSummary();
+      renderPicked();
       refresh();
       if (focus) {
         const target = done ? steps[5] : $('legend', steps[n - 1]);
-        if (target) {
-          if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
-          target.focus({ preventScroll: true });
-        }
+        if (target) { if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); }
         const top = form.getBoundingClientRect().top;
-        if (top < 70 || top > window.innerHeight * 0.5) {
-          form.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-        }
+        if (top < 70 || top > window.innerHeight * 0.5) form.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
       }
     };
 
-    // Avanza solo cuando la persona toca una opción (no con flechas del teclado)
-    form.addEventListener('pointerdown', (e) => { if (e.target.closest('.opt')) pointerPick = true; });
+    form.addEventListener('pointerdown', (e) => { if (e.target.closest('.tile')) pointerPick = true; });
 
     form.addEventListener('change', (e) => {
       const t = e.target;
       if (t.type !== 'radio') return;
       const i = Number(t.value);
-      if (t.name === 'tipo') state.tipo = CONFIG.services[i];
+      if (t.name === 'tipo') state.tipo = CONFIG.services[i].label;
       if (t.name === 'zona') { state.zona = CONFIG.zones[i]; zonaOtra.value = ''; }
-      if (t.name === 'urgencia') state.urgencia = CONFIG.urgency[i];
+      if (t.name === 'urgencia') state.urgencia = CONFIG.urgency[i].label;
       if (t.name === 'presupuesto') {
         state.presupuesto = CONFIG.budgets[i];
         const ok = qualifies(state.presupuesto);
         lowBox.hidden = ok;
         if (!ok) {
-          $('#wz-low-msg').textContent =
-            `Por ahora tomamos obras desde ${money(CONFIG.minBudget)}. Si tu proyecto crece o quieres juntar varios trabajos, aquí estaremos para cotizarte.`;
+          $('#wz-low-msg').textContent = `Por ahora tomamos obras desde ${money(CONFIG.minBudget)}. Si tu proyecto crece o quieres juntar varios trabajos, aquí estaremos para cotizarte.`;
+          const lbl = t.closest('.tile');
+          if (lbl && !reduceMotion) { lbl.classList.remove('is-shake'); void lbl.offsetWidth; lbl.classList.add('is-shake'); }
         }
       }
       refresh();
       const auto = pointerPick && canAdvance();
       pointerPick = false;
-      if (auto && current < 5) setTimeout(() => { if (canAdvance()) show(current + 1); }, reduceMotion ? 0 : 260);
+      if (auto && current < 5) setTimeout(() => { if (canAdvance()) show(current + 1); }, reduceMotion ? 0 : 320);
     });
 
     zonaOtra.addEventListener('input', () => {
@@ -255,14 +308,11 @@ const CONFIG = {
       state.zona = v.length >= 3 ? v : ($('input[name="zona"]:checked', form) ? state.zona : '');
       refresh();
     });
-    zonaOtra.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') { e.preventDefault(); if (canAdvance()) show(3); }
-    });
+    zonaOtra.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); if (canAdvance()) show(3); } });
 
     btnNext.addEventListener('click', () => { if (canAdvance()) show(current + 1); });
     btnBack.addEventListener('click', () => { if (current > 1) show(current - 1); });
 
-    // Teléfono: deja solo dígitos y lo agrupa para leerlo fácil
     tel.addEventListener('input', () => {
       let d = tel.value.replace(/\D/g, '');
       if (d.length > 10 && d.startsWith('52')) d = d.slice(2);
@@ -270,9 +320,7 @@ const CONFIG = {
       tel.value = d.replace(/^(\d{2})(\d{0,4})(\d{0,4}).*/, (m, a, b, c) => [a, b, c].filter(Boolean).join(' '));
       if (tel.getAttribute('aria-invalid') === 'true' && d.length === 10) setErr(tel, '#err-tel', false);
     });
-    nombre.addEventListener('input', () => {
-      if (nombre.value.trim().length >= 2) setErr(nombre, '#err-nombre', false);
-    });
+    nombre.addEventListener('input', () => { if (nombre.value.trim().length >= 2) setErr(nombre, '#err-nombre', false); });
 
     function setErr(input, errSel, on) {
       input.setAttribute('aria-invalid', on ? 'true' : 'false');
@@ -282,7 +330,6 @@ const CONFIG = {
     }
 
     function renderSummary() {
-      const box = $('#wz-summary');
       const rows = [['Obra', state.tipo], ['Zona', state.zona], ['Para cuándo', state.urgencia], ['Presupuesto', state.presupuesto && state.presupuesto.label]];
       const dl = document.createElement('dl');
       rows.forEach(([k, v]) => {
@@ -290,20 +337,19 @@ const CONFIG = {
         const dd = document.createElement('dd'); dd.textContent = v || '—';
         dl.append(dt, dd);
       });
-      box.replaceChildren(dl);
+      $('#wz-summary').replaceChildren(dl);
     }
 
     function buildMessage() {
-      const n = nombre.value.trim();
       const t = tel.value.replace(/\D/g, '');
       return [
-        `Hola, vi su página y quiero cotizar una obra.`,
-        ``,
+        'Hola, vi su página y quiero cotizar una obra.',
+        '',
         `• Obra: ${state.tipo}`,
         `• Zona: ${state.zona}`,
         `• Presupuesto: ${state.presupuesto.label}`,
         `• Para cuándo: ${state.urgencia}`,
-        `• Nombre: ${n}`,
+        `• Nombre: ${nombre.value.trim()}`,
         `• Teléfono: ${t.replace(/^(\d{2})(\d{4})(\d{4})$/, '$1 $2 $3')}`,
       ].join('\n');
     }
@@ -318,13 +364,11 @@ const CONFIG = {
       if (!nOk) { nombre.focus(); return; }
       if (!tOk) { tel.focus(); return; }
       if (!qualifies(state.presupuesto)) { show(4); return; }
-
       const url = `https://wa.me/${CONFIG.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(buildMessage())}`;
       $('#wz-reopen').href = url;
       // window.open con 'noopener' siempre devuelve null; se corta el vínculo a mano.
       const win = window.open(url, '_blank');
-      if (win) { try { win.opener = null; } catch (_) { /* sin acceso */ } }
-      else window.location.href = url;
+      if (win) { try { win.opener = null; } catch (_) { /* sin acceso */ } } else window.location.href = url;
       show(6);
     });
 
@@ -341,12 +385,12 @@ const CONFIG = {
 
   /* ---------- Barra fija en celular ---------- */
   const mbar = $('#mbar');
-  const hero = $('.hero');
+  const heroEl = $('.hero');
   const quote = $('#cotizar');
-  if (mbar && hero && 'IntersectionObserver' in window) {
+  if (mbar && heroEl && 'IntersectionObserver' in window) {
     let heroVisible = true; let quoteVisible = false;
     const upd = () => mbar.classList.toggle('is-on', !heroVisible && !quoteVisible);
-    new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; upd(); }, { threshold: 0.05 }).observe(hero);
+    new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; upd(); }, { threshold: 0.05 }).observe(heroEl);
     if (quote) new IntersectionObserver(([e]) => { quoteVisible = e.isIntersecting; upd(); }, { threshold: 0.15 }).observe(quote);
   }
 
