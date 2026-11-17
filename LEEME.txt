@@ -1,0 +1,24 @@
+LANDING DEMO · REMODELACIONES
+=============================
+
+SUBIRLA A VERCEL (3 pasos)
+1. Entra a vercel.com, abre el proyecto conectado a remodelaciones.heyelevu.com.
+2. Arrastra la carpeta "remodelaciones-demo" completa (la que tiene index.html adentro) a la pantalla del proyecto.
+3. Espera a que diga "Ready" y abre https://remodelaciones.heyelevu.com en tu celular.
+
+ANTES DE SUBIRLA: cambia tu WhatsApp
+- Abre assets/js/app.js. Hasta arriba está CONFIG.
+- whatsapp: '524441109812' (ya configurado). Formato: 52 + 10 dígitos, sin espacios.
+- minBudget: presupuesto mínimo (hoy $30,000). El primer rango de "budgets" debe terminar en ese número.
+- businessName, city, services, zones, urgency, mapsUrl, reviewsUrl: todo se cambia ahí mismo.
+
+PARA UN CLIENTE NUEVO
+- Cambia CONFIG en app.js y el <title> de index.html.
+- Reemplaza las imágenes de assets/img/ (antes/después) por las fotos del cliente, con el mismo nombre
+  o cambiando la ruta en index.html. Usa .webp o .jpg de máximo 1200 px de ancho.
+- El QR (assets/img/qr-sitio.svg) apunta a remodelaciones.heyelevu.com. Si cambia el dominio, hay que regenerarlo.
+- Quita los avisos "de ejemplo" solo cuando pongas testimonios, cifras y fotos reales.
+
+NOTAS
+- La página no se indexa en Google (noindex en la página, en robots.txt y en vercel.json).
+- No usa servidor, base de datos ni APIs. El formulario solo abre WhatsApp con el mensaje armado.
