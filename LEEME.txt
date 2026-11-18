@@ -11,6 +11,7 @@ ANTES DE SUBIRLA: cambia tu WhatsApp
 - whatsapp: '524441109812' (ya configurado). Formato: 52 + 10 dígitos, sin espacios.
 - minBudget: presupuesto mínimo (hoy $30,000). El primer rango de "budgets" debe terminar en ese número.
 - businessName, city, services, zones, urgency, mapsUrl, reviewsUrl, mapLat, mapLng: todo se cambia ahí mismo.
+- promesaRespuesta, promesaVisita, promesaPresupuesto: las 3 promesas del negocio. Se cambian una vez y se actualizan en toda la página.
 
 PARA UN CLIENTE NUEVO
 - Cambia CONFIG en app.js y el <title> de index.html.
@@ -21,5 +22,5 @@ PARA UN CLIENTE NUEVO
 - Quita los avisos "de ejemplo" solo cuando pongas testimonios, cifras y fotos reales.
 
 NOTAS
-- La página sí se puede indexar en Google (robots.txt permite todo y no hay noindex).
+- La página NO se indexa en Google (meta robots noindex, nofollow), porque las cifras y testimonios son de ejemplo.
 - No usa servidor, base de datos ni APIs. El formulario solo abre WhatsApp con el mensaje armado.

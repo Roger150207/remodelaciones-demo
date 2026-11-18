@@ -395,7 +395,7 @@ button, input { font: inherit; color: inherit; }
 .final p { margin: 18px auto 32px; color: var(--muted-dark); max-width: 30em; }
 
 /* ---------- Pie ---------- */
-.footer { background: var(--ink); color: var(--muted-dark); border-top: 1px solid var(--line-dark); padding: 26px 0 110px; font-size: .9375rem; }
+.footer { background: var(--ink); color: var(--muted-dark); border-top: 1px solid var(--line-dark); padding: 26px 0 calc(110px + env(safe-area-inset-bottom)); font-size: .9375rem; }
 .footer__in { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
 .footer__demo { color: #a9a39a; }
 

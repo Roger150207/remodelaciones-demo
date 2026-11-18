@@ -10,6 +10,12 @@ const CONFIG = {
   businessName: 'Remodelaciones Tu Nombre',
   city: 'San Luis Potosí',
 
+  // Promesas del negocio. Se muestran en el inicio, en la franja de confianza y junto al filtro.
+  // Cámbialas aquí para cada cliente (escribe solo lo que el negocio sí cumple).
+  promesaRespuesta: 'Respuesta el mismo día hábil',
+  promesaVisita: 'Visita y medidas sin costo',
+  promesaPresupuesto: 'Presupuesto por escrito',
+
   // Presupuesto mínimo que acepta el negocio (en pesos). Debajo de esto, no deja enviar.
   minBudget: 30000,
 
@@ -55,7 +61,16 @@ const CONFIG = {
 
   /* ---------- Textos configurables ---------- */
   const cfgText = { ...CONFIG, minBudgetText: money(CONFIG.minBudget) };
-  $$('[data-cfg]').forEach((el) => { const v = cfgText[el.dataset.cfg]; if (v) el.textContent = v; });
+  $$('[data-cfg]').forEach((el) => {
+    const v = cfgText[el.dataset.cfg];
+    if (!v) return;
+    if (!el.hasAttribute('data-cfg-bold')) { el.textContent = v; return; }
+    // Franja de confianza: la primera palabra va en negritas.
+    const sp = String(v).indexOf(' ');
+    const b = document.createElement('b');
+    b.textContent = sp < 0 ? v : v.slice(0, sp);
+    el.replaceChildren(b, sp < 0 ? '' : v.slice(sp));
+  });
   const setHref = (id, url) => { const el = document.getElementById(id); if (el && url) el.href = url; };
   setHref('map-link', CONFIG.mapsUrl);
   setHref('review-link', CONFIG.reviewsUrl);
