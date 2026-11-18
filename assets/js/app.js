@@ -58,6 +58,9 @@ const CONFIG = {
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const money = (n) => '$' + n.toLocaleString('es-MX');
+  const fmtTel = (d) => (/^(55|56|33|81)/.test(d)
+    ? [d.slice(0, 2), d.slice(2, 6), d.slice(6, 10)]
+    : [d.slice(0, 3), d.slice(3, 6), d.slice(6, 10)]).filter(Boolean).join(' ');
 
   /* ---------- Textos configurables ---------- */
   const cfgText = { ...CONFIG, minBudgetText: money(CONFIG.minBudget) };
@@ -314,6 +317,10 @@ const CONFIG = {
           $('#wz-low-msg').textContent = `Por ahora tomamos obras desde ${money(CONFIG.minBudget)}. Si tu proyecto crece o quieres juntar varios trabajos, aquí estaremos para cotizarte.`;
           const lbl = t.closest('.tile');
           if (lbl && !reduceMotion) { lbl.classList.remove('is-shake'); void lbl.offsetWidth; lbl.classList.add('is-shake'); }
+          requestAnimationFrame(() => {
+            const r = lowBox.getBoundingClientRect();
+            if (r.bottom > window.innerHeight || r.top < 70) lowBox.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+          });
         }
       }
       refresh();
@@ -339,9 +346,10 @@ const CONFIG = {
 
     tel.addEventListener('input', () => {
       let d = tel.value.replace(/\D/g, '');
-      if (d.length > 10 && d.startsWith('52')) d = d.slice(2);
+      // Quita prefijos que la gente suele escribir: +52, 52 1, 044, 045, 01.
+      if (d.length > 10) d = d.replace(/^(521|52|044|045|01|1)/, '');
       d = d.slice(0, 10);
-      tel.value = d.replace(/^(\d{2})(\d{0,4})(\d{0,4}).*/, (m, a, b, c) => [a, b, c].filter(Boolean).join(' '));
+      tel.value = fmtTel(d);
       if (tel.getAttribute('aria-invalid') === 'true' && d.length === 10) setErr(tel, '#err-tel', false);
     });
     nombre.addEventListener('input', () => { if (nombre.value.trim().length >= 2) setErr(nombre, '#err-nombre', false); });
@@ -374,7 +382,7 @@ const CONFIG = {
         `• Presupuesto: ${state.presupuesto.label}`,
         `• Para cuándo: ${state.urgencia}`,
         `• Nombre: ${nombre.value.trim()}`,
-        `• Teléfono: ${t.replace(/^(\d{2})(\d{4})(\d{4})$/, '$1 $2 $3')}`,
+        `• Teléfono: ${fmtTel(t)}`,
       ].join('\n');
     }
 
