@@ -8,7 +8,7 @@ const CONFIG = {
   telefono: '',
 
   businessName: 'Remodelaciones Tu Nombre',
-  city: 'San Luis Potosí',
+  city: 'Monterrey',
 
   // Promesas del negocio. Se muestran en el inicio, en la franja de confianza y junto al filtro.
   // Cámbialas aquí para cada cliente (escribe solo lo que el negocio sí cumple).
@@ -35,7 +35,7 @@ const CONFIG = {
     { label: 'Closets y carpintería', icon: 'closet' },
     { label: 'Remodelación integral', icon: 'muro' },
   ],
-  zones: ['Centro', 'Lomas', 'Tangamanga', 'Pozos', 'Soledad', 'Otra zona'],
+  zones: ['Monterrey', 'San Pedro', 'San Nicolás', 'Guadalupe', 'Apodaca', 'Otra zona'],
   urgency: [
     { label: 'Lo antes posible', sub: 'Quiero empezar este mes', icon: 'rayo' },
     { label: 'En 1 a 3 meses', sub: 'Ya lo tengo planeado', icon: 'calendario' },

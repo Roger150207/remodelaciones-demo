@@ -410,6 +410,13 @@ button, input { font: inherit; color: inherit; }
 /* =========================================================
    Tablet y escritorio
    ========================================================= */
+/* Celular y tableta: el filtro sube justo después de las fotos de trabajos */
+@media (max-width: 959px) {
+  main { display: flex; flex-direction: column; }
+  main > section { order: 2; }
+  main > .hero, main > .pain, main > #trabajos { order: 0; }
+  main > #cotizar { order: 1; }
+}
 @media (min-width: 640px) {
   :root { --gutter: 32px; }
   .hero__ctas { flex-direction: row; flex-wrap: wrap; }
