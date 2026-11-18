@@ -8,7 +8,7 @@ const CONFIG = {
   telefono: '',
 
   businessName: 'Remodelaciones Tu Nombre',
-  city: 'tu ciudad',
+  city: 'San Luis Potosí',
 
   // Presupuesto mínimo que acepta el negocio (en pesos). Debajo de esto, no deja enviar.
   minBudget: 30000,
@@ -26,10 +26,10 @@ const CONFIG = {
     { label: 'Baño', icon: 'bano' },
     { label: 'Impermeabilización', icon: 'techo' },
     { label: 'Pisos y azulejo', icon: 'piso' },
-    { label: 'Herrería', icon: 'reja' },
-    { label: 'Albañilería o ampliación', icon: 'muro' },
+    { label: 'Closets y carpintería', icon: 'closet' },
+    { label: 'Remodelación integral', icon: 'muro' },
   ],
-  zones: ['Centro', 'Norte', 'Sur', 'Oriente', 'Poniente', 'Zona metropolitana'],
+  zones: ['Centro', 'Lomas', 'Tangamanga', 'Pozos', 'Soledad', 'Otra zona'],
   urgency: [
     { label: 'Lo antes posible', sub: 'Quiero empezar este mes', icon: 'rayo' },
     { label: 'En 1 a 3 meses', sub: 'Ya lo tengo planeado', icon: 'calendario' },
@@ -194,7 +194,7 @@ const CONFIG = {
     bano: '<path d="M6 24h36v5a11 11 0 0 1-11 11H17A11 11 0 0 1 6 29zM12 24V11a4 4 0 0 1 8 0v1M15 40l-2 4M33 40l2 4"/>',
     techo: '<path d="M4 22 24 8l20 14M9 19v21h30V19"/><path d="M18 28c0 2-2 3-2 5a2 2 0 0 0 4 0c0-2-2-3-2-5zM30 26c0 2-2 3-2 5a2 2 0 0 0 4 0c0-2-2-3-2-5z"/>',
     piso: '<path d="M6 6h36v36H6zM6 18h36M6 30h36M18 6v36M30 6v36"/>',
-    reja: '<path d="M4 12h40M4 40h40M10 8v34M18 8v34M26 8v34M34 8v34M42 8v34M10 8l0-2M18 8v-2M26 8v-2M34 8v-2M42 8v-2"/>',
+    closet: '<path d="M8 4h32v40H8zM24 4v40M19 22v6M29 22v6M8 38h32"/>',
     muro: '<path d="M4 10h40v30H4zM4 20h40M4 30h40M16 10v10M32 10v10M10 20v10M24 20v10M38 20v10M16 30v10M32 30v10"/>',
     rayo: '<path d="M26 4 10 27h12l-2 17 16-23H24z"/>',
     calendario: '<path d="M6 10h36v32H6zM6 19h36M15 4v10M33 4v10M14 27h4M22 27h4M30 27h4M14 34h4M22 34h4"/>',
@@ -203,7 +203,7 @@ const CONFIG = {
   const svg = (name) => `<svg viewBox="0 0 48 48" aria-hidden="true">${ICONS[name] || ''}</svg>`;
 
   /* ---------- Formulario de 4 pasos ---------- */
-  const form = $('#wizard');
+  const form = $('#filtro');
   if (form) {
     const state = { tipo: '', zona: '', urgencia: '', presupuesto: null };
     const steps = $$('.wz-step', form);
@@ -211,7 +211,9 @@ const CONFIG = {
     const btnBack = $('#wz-back');
     const btnSend = $('#wz-send');
     const count = $('#wz-count');
-    const dots = $$('#wz-dots li');
+    const bar = $('#wz-bar');
+    const progress = $('#wz-progress');
+    const eta = $('#wz-eta');
     const picked = $('#wz-picked');
     const lowBox = $('#wz-low');
     const zonaOtra = $('#zona-otra');
@@ -264,8 +266,11 @@ const CONFIG = {
       btnBack.hidden = n === 1 || done;
       btnNext.hidden = n >= 5;
       btnSend.hidden = n !== 5;
-      count.textContent = n <= 4 ? `Paso ${n} de 4` : 'Último paso';
-      dots.forEach((d, i) => { d.classList.toggle('is-on', i < n - 1); d.classList.toggle('is-now', i === n - 1); });
+      count.textContent = n <= 4 ? `Paso ${n} de 4` : 'Último paso: tus datos';
+      const pct = Math.min(100, n * 20);
+      bar.style.width = pct + '%';
+      progress.setAttribute('aria-valuenow', String(pct));
+      eta.textContent = n <= 2 ? 'Menos de 1 minuto' : n <= 4 ? 'Ya casi' : 'Listo para enviar';
       if (n === 5) renderSummary();
       renderPicked();
       refresh();
@@ -311,6 +316,10 @@ const CONFIG = {
     zonaOtra.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); if (canAdvance()) show(3); } });
 
     btnNext.addEventListener('click', () => { if (canAdvance()) show(current + 1); });
+    $('#wz-low-back').addEventListener('click', () => {
+      const ok = $$('input[name="presupuesto"]', form).find((r) => qualifies(CONFIG.budgets[Number(r.value)]));
+      if (ok) ok.focus();
+    });
     btnBack.addEventListener('click', () => { if (current > 1) show(current - 1); });
 
     tel.addEventListener('input', () => {
@@ -385,13 +394,17 @@ const CONFIG = {
 
   /* ---------- Barra fija en celular ---------- */
   const mbar = $('#mbar');
-  const heroEl = $('.hero');
-  const quote = $('#cotizar');
-  if (mbar && heroEl && 'IntersectionObserver' in window) {
-    let heroVisible = true; let quoteVisible = false;
-    const upd = () => mbar.classList.toggle('is-on', !heroVisible && !quoteVisible);
-    new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; upd(); }, { threshold: 0.05 }).observe(heroEl);
-    if (quote) new IntersectionObserver(([e]) => { quoteVisible = e.isIntersecting; upd(); }, { threshold: 0.15 }).observe(quote);
+  // Aparece en cuanto el botón principal del inicio sale de la pantalla
+  // y se oculta mientras el filtro está a la vista, para no tapar las opciones.
+  const heroCta = $('.hero__ctas');
+  const quote = $('#filtro');
+  if (mbar && heroCta && 'IntersectionObserver' in window) {
+    let ctaVisible = true; let quoteVisible = false;
+    const upd = () => mbar.classList.toggle('is-on', !ctaVisible && !quoteVisible);
+    new IntersectionObserver(([e]) => { ctaVisible = e.isIntersecting; upd(); }, { threshold: 0 }).observe(heroCta);
+    if (quote) new IntersectionObserver(([e]) => { quoteVisible = e.isIntersecting; upd(); }, { threshold: 0.2 }).observe(quote);
+  } else if (mbar) {
+    mbar.classList.add('is-on');
   }
 
   /* ---------- Guardar, compartir y contacto ---------- */

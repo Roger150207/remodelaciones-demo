@@ -21,5 +21,5 @@ PARA UN CLIENTE NUEVO
 - Quita los avisos "de ejemplo" solo cuando pongas testimonios, cifras y fotos reales.
 
 NOTAS
-- La página no se indexa en Google (noindex en la página, en robots.txt y en vercel.json).
+- La página sí se puede indexar en Google (robots.txt permite todo y no hay noindex).
 - No usa servidor, base de datos ni APIs. El formulario solo abre WhatsApp con el mensaje armado.
