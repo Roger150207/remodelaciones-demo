@@ -7,7 +7,7 @@ const CONFIG = {
   // Teléfono para el botón "Llamar" en celular (10 dígitos). Déjalo vacío '' para ocultarlo.
   telefono: '',
 
-  businessName: 'Remodelaciones Tu Nombre',
+  businessName: 'Reforma Innovare',
   city: 'Monterrey',
 
   // Promesas del negocio. Se muestran en el inicio, en la franja de confianza y junto al filtro.
