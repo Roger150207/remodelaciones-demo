@@ -97,8 +97,21 @@ const CONFIG = {
     });
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    }, { threshold: 0 });
     reveals.forEach((el) => io.observe(el));
+    // Respaldo: marca lo que ya entró al viewport o quedó por encima (página recorrida).
+    const sweep = () => {
+      const h = window.innerHeight || document.documentElement.clientHeight;
+      reveals.forEach((el) => {
+        if (!el.classList.contains('is-in') && el.getBoundingClientRect().top < h) { el.classList.add('is-in'); io.unobserve(el); }
+      });
+    };
+    sweep();
+    requestAnimationFrame(sweep);
+    setTimeout(sweep, 200);
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('resize', sweep);
+    window.addEventListener('load', sweep);
   }
 
   /* ---------- Galería con vista ampliada ---------- */
