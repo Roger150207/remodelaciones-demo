@@ -284,7 +284,7 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 .mbar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
   padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom, 0px));
-  background: rgba(251, 250, 247, .94); border-top: 1px solid var(--line);
+  background: rgba(255, 255, 255, .94); border-top: 1px solid var(--line);
   transform: translateY(110%); transition: transform .3s var(--ease); visibility: hidden;
 }
 .mbar.is-on { transform: none; visibility: visible; }
