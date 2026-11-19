@@ -21,11 +21,8 @@
 <link rel="apple-touch-icon" href="assets/img/icono-180.png">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preload" href="assets/fonts/cormorant-600.woff2" as="font" type="font/woff2" crossorigin>
-<!--
-  Cuando exista la foto del hero, agrega aquí su preload:
-  <link rel="preload" as="image" href="assets/img/hero-cocina-1280.webp" imagesrcset="assets/img/hero-cocina-1280.webp 1280w, assets/img/hero-cocina.webp 2400w" imagesizes="(min-width: 960px) 55vw, 100vw" fetchpriority="high">
--->
-<link rel="stylesheet" href="assets/css/styles.css?v=2">
+<link rel="preload" as="image" href="assets/img/hero-cocina-1280.webp" imagesrcset="assets/img/hero-cocina-1280.webp 1280w, assets/img/hero-cocina.webp 2400w" imagesizes="(min-width: 960px) 55vw, 100vw" fetchpriority="high">
+<link rel="stylesheet" href="assets/css/styles.css?v=3">
 </head>
 <body>
 <a class="skip" href="#filtro">Ir directo a cotizar</a>
@@ -66,16 +63,7 @@
         <li data-cfg="promesaRespuesta">Respuesta el mismo día hábil</li>
       </ul>
     </div>
-    <!--
-      FOTO DEL HERO. Cuando exista, reemplaza el <figure class="ph"> por:
-      <img class="hero__img" src="assets/img/hero-cocina-1280.webp" srcset="assets/img/hero-cocina-1280.webp 1280w, assets/img/hero-cocina.webp 2400w" sizes="(min-width: 960px) 55vw, 100vw" width="2400" height="1600" alt="Cocina integral terminada con luz natural" fetchpriority="high">
-    -->
-    <figure class="ph ph--hero" aria-label="Espacio para la foto principal: cocina integral luminosa">
-      <span class="ph__tag">Foto pendiente</span>
-      <code class="ph__file">assets/img/hero-cocina.webp</code>
-      <span class="ph__size">2400×1600 · móvil: hero-cocina-1280.webp (1280×853)</span>
-      <span class="ph__desc">Cocina integral contemporánea con luz natural, encuadre horizontal.</span>
-    </figure>
+    <img class="hero__img" src="assets/img/hero-cocina-1280.webp" srcset="assets/img/hero-cocina-1280.webp 1280w, assets/img/hero-cocina.webp 2400w" sizes="(min-width: 960px) 55vw, 100vw" width="2400" height="1600" alt="Cocina integral terminada con luz natural" fetchpriority="high">
   </div>
 </section>
 
@@ -134,56 +122,32 @@
     </header>
     <ul class="cards" tabindex="0" aria-label="Servicios">
       <li class="card reveal">
-        <figure class="ph ph--card" aria-label="Espacio para foto: cocina integral">
-          <span class="ph__tag">Foto pendiente</span>
-          <code class="ph__file">servicio-cocina.webp</code>
-          <span class="ph__size">1600×1200 · 640×480</span>
-        </figure>
+        <img class="card__img" src="assets/img/servicio-cocina-640.webp" srcset="assets/img/servicio-cocina-640.webp 640w, assets/img/servicio-cocina.webp 1600w" sizes="(min-width: 960px) 33vw, 82vw" width="1600" height="1200" alt="Cocina integral terminada, con cubierta y muebles a medida" loading="lazy" decoding="async">
         <h3>Cocinas integrales</h3>
         <p>Muebles a medida, cubierta e instalación completa, listos para usarse.</p>
       </li>
       <li class="card reveal">
-        <figure class="ph ph--card" aria-label="Espacio para foto: baño moderno">
-          <span class="ph__tag">Foto pendiente</span>
-          <code class="ph__file">servicio-bano.webp</code>
-          <span class="ph__size">1600×1200 · 640×480</span>
-        </figure>
+        <img class="card__img" src="assets/img/servicio-bano-640.webp" srcset="assets/img/servicio-bano-640.webp 640w, assets/img/servicio-bano.webp 1600w" sizes="(min-width: 960px) 33vw, 82vw" width="1600" height="1200" alt="Baño moderno con cancel de cristal y acabados claros" loading="lazy" decoding="async">
         <h3>Baños</h3>
         <p>Regadera, cancel, azulejo y plomería nueva, sin fugas ni retrabajos.</p>
       </li>
       <li class="card reveal">
-        <figure class="ph ph--card" aria-label="Espacio para foto: impermeabilización">
-          <span class="ph__tag">Foto pendiente</span>
-          <code class="ph__file">servicio-impermeabilizacion.webp</code>
-          <span class="ph__size">1600×1200 · 640×480</span>
-        </figure>
+        <img class="card__img" src="assets/img/servicio-impermeabilizacion-640.webp" srcset="assets/img/servicio-impermeabilizacion-640.webp 640w, assets/img/servicio-impermeabilizacion.webp 1600w" sizes="(min-width: 960px) 33vw, 82vw" width="1600" height="1200" alt="Azotea impermeabilizada, lista para la temporada de lluvias" loading="lazy" decoding="async">
         <h3>Impermeabilización</h3>
         <p>Azoteas y muros secos antes de la temporada de lluvias.</p>
       </li>
       <li class="card reveal">
-        <figure class="ph ph--card" aria-label="Espacio para foto: pisos y azulejo">
-          <span class="ph__tag">Foto pendiente</span>
-          <code class="ph__file">servicio-pisos.webp</code>
-          <span class="ph__size">1600×1200 · 640×480</span>
-        </figure>
+        <img class="card__img" src="assets/img/servicio-pisos-640.webp" srcset="assets/img/servicio-pisos-640.webp 640w, assets/img/servicio-pisos.webp 1600w" sizes="(min-width: 960px) 33vw, 82vw" width="1600" height="1200" alt="Piso de porcelanato bien nivelado en interior de casa" loading="lazy" decoding="async">
         <h3>Pisos y azulejo</h3>
         <p>Porcelanato, cerámica o laminado, bien nivelado de pared a pared.</p>
       </li>
       <li class="card reveal">
-        <figure class="ph ph--card" aria-label="Espacio para foto: closet a medida">
-          <span class="ph__tag">Foto pendiente</span>
-          <code class="ph__file">servicio-closet.webp</code>
-          <span class="ph__size">1600×1200 · 640×480</span>
-        </figure>
+        <img class="card__img" src="assets/img/servicio-closet-640.webp" srcset="assets/img/servicio-closet-640.webp 640w, assets/img/servicio-closet.webp 1600w" sizes="(min-width: 960px) 33vw, 82vw" width="1600" height="1200" alt="Vestidor a medida, ordenado e iluminado" loading="lazy" decoding="async">
         <h3>Closets y carpintería a medida</h3>
         <p>Closets, vestidores y puertas diseñados para aprovechar tu espacio.</p>
       </li>
       <li class="card reveal">
-        <figure class="ph ph--card" aria-label="Espacio para foto: remodelación integral">
-          <span class="ph__tag">Foto pendiente</span>
-          <code class="ph__file">servicio-integral.webp</code>
-          <span class="ph__size">1600×1200 · 640×480</span>
-        </figure>
+        <img class="card__img" src="assets/img/servicio-integral-640.webp" srcset="assets/img/servicio-integral-640.webp 640w, assets/img/servicio-integral.webp 1600w" sizes="(min-width: 960px) 33vw, 82vw" width="1600" height="1200" alt="Estancia recién remodelada, amplia y con luz natural" loading="lazy" decoding="async">
         <h3>Remodelación integral y ampliaciones</h3>
         <p>Un solo equipo coordina diseño, materiales, acabados y entrega.</p>
       </li>
@@ -214,19 +178,25 @@
       <h2 id="trab-t">Trabajos.</h2>
       <p class="badge">Fotos de ejemplo. Aquí van las obras reales del negocio.</p>
     </header>
-    <!--
-      Cuando existan las fotos, cambia cada <figure class="ph"> por un botón que abre la vista ampliada:
-      <button class="g__btn" type="button" data-full="assets/img/galeria-01.webp" data-title="Cocina integral" data-meta="Descripción corta">
-        <img src="assets/img/galeria-01-640.webp" srcset="assets/img/galeria-01-640.webp 640w, assets/img/galeria-01.webp 1600w" sizes="(min-width: 960px) 33vw, 85vw" width="1600" height="1067" alt="Cocina integral: descripción corta" loading="lazy" decoding="async">
-      </button>
-    -->
     <ul class="gallery" tabindex="0" aria-label="Galería de trabajos">
-      <li class="g reveal"><figure class="ph ph--g" aria-label="Espacio para foto de galería 1: cocina"><span class="ph__tag">Foto pendiente</span><code class="ph__file">galeria-01.webp</code><span class="ph__size">1600×1067 · 640×427</span><span class="ph__desc">Cocina integral terminada</span></figure></li>
-      <li class="g reveal"><figure class="ph ph--g" aria-label="Espacio para foto de galería 2: baño"><span class="ph__tag">Foto pendiente</span><code class="ph__file">galeria-02.webp</code><span class="ph__size">1600×1067 · 640×427</span><span class="ph__desc">Baño con cancel de cristal</span></figure></li>
-      <li class="g reveal"><figure class="ph ph--g" aria-label="Espacio para foto de galería 3: cocina"><span class="ph__tag">Foto pendiente</span><code class="ph__file">galeria-03.webp</code><span class="ph__size">1600×1067 · 640×427</span><span class="ph__desc">Cocina con isla o barra</span></figure></li>
-      <li class="g reveal"><figure class="ph ph--g" aria-label="Espacio para foto de galería 4: baño"><span class="ph__tag">Foto pendiente</span><code class="ph__file">galeria-04.webp</code><span class="ph__size">1600×1067 · 640×427</span><span class="ph__desc">Baño completo remodelado</span></figure></li>
-      <li class="g reveal"><figure class="ph ph--g" aria-label="Espacio para foto de galería 5: closet"><span class="ph__tag">Foto pendiente</span><code class="ph__file">galeria-05.webp</code><span class="ph__size">1600×1067 · 640×427</span><span class="ph__desc">Closet o vestidor a medida</span></figure></li>
-      <li class="g reveal"><figure class="ph ph--g" aria-label="Espacio para foto de galería 6: interior remodelado"><span class="ph__tag">Foto pendiente</span><code class="ph__file">galeria-06.webp</code><span class="ph__size">1600×1067 · 640×427</span><span class="ph__desc">Estancia o interior remodelado</span></figure></li>
+      <li class="g reveal"><button class="g__btn" type="button" data-full="assets/img/galeria-01.webp" data-title="Cocina integral" data-meta="Cocina integral terminada">
+        <img src="assets/img/galeria-01-640.webp" srcset="assets/img/galeria-01-640.webp 640w, assets/img/galeria-01.webp 1600w" sizes="(min-width: 960px) 33vw, 85vw" width="1600" height="1067" alt="Cocina integral terminada" loading="lazy" decoding="async">
+      </button></li>
+      <li class="g reveal"><button class="g__btn" type="button" data-full="assets/img/galeria-02.webp" data-title="Baño" data-meta="Baño con cancel de cristal">
+        <img src="assets/img/galeria-02-640.webp" srcset="assets/img/galeria-02-640.webp 640w, assets/img/galeria-02.webp 1600w" sizes="(min-width: 960px) 33vw, 85vw" width="1600" height="1067" alt="Baño con cancel de cristal" loading="lazy" decoding="async">
+      </button></li>
+      <li class="g reveal"><button class="g__btn" type="button" data-full="assets/img/galeria-03.webp" data-title="Cocina con isla" data-meta="Cocina con isla o barra">
+        <img src="assets/img/galeria-03-640.webp" srcset="assets/img/galeria-03-640.webp 640w, assets/img/galeria-03.webp 1600w" sizes="(min-width: 960px) 33vw, 85vw" width="1600" height="1067" alt="Cocina con isla o barra" loading="lazy" decoding="async">
+      </button></li>
+      <li class="g reveal"><button class="g__btn" type="button" data-full="assets/img/galeria-04.webp" data-title="Baño completo" data-meta="Baño completo remodelado">
+        <img src="assets/img/galeria-04-640.webp" srcset="assets/img/galeria-04-640.webp 640w, assets/img/galeria-04.webp 1600w" sizes="(min-width: 960px) 33vw, 85vw" width="1600" height="1067" alt="Baño completo remodelado" loading="lazy" decoding="async">
+      </button></li>
+      <li class="g reveal"><button class="g__btn" type="button" data-full="assets/img/galeria-05.webp" data-title="Closet a medida" data-meta="Closet o vestidor a medida">
+        <img src="assets/img/galeria-05-640.webp" srcset="assets/img/galeria-05-640.webp 640w, assets/img/galeria-05.webp 1600w" sizes="(min-width: 960px) 33vw, 85vw" width="1600" height="1067" alt="Closet o vestidor a medida" loading="lazy" decoding="async">
+      </button></li>
+      <li class="g reveal"><button class="g__btn" type="button" data-full="assets/img/galeria-06.webp" data-title="Interior remodelado" data-meta="Estancia o interior remodelado">
+        <img src="assets/img/galeria-06-640.webp" srcset="assets/img/galeria-06-640.webp 640w, assets/img/galeria-06.webp 1600w" sizes="(min-width: 960px) 33vw, 85vw" width="1600" height="1067" alt="Estancia o interior remodelado" loading="lazy" decoding="async">
+      </button></li>
     </ul>
   </div>
 </section>
