@@ -42,11 +42,11 @@ const CONFIG = {
     { label: 'Solo estoy cotizando', sub: 'Quiero comparar opciones', icon: 'lupa' },
   ],
 
-  // Ubicación en Google Maps. Vacío a propósito: esta es una página de ejemplo.
+  // Ubicación en Google Maps. Vacío hasta que haya una ficha real del negocio.
   // Pon aquí la ficha REAL del negocio (nunca la de otro negocio). Si quedan vacíos, no se muestra ningún enlace.
   mapsUrl: '',
   reviewsUrl: '',
-  // Centro genérico de Monterrey (ubicación de ejemplo, no es la dirección de ningún negocio).
+  // Centro de Monterrey (solo referencia de mapa; no es la dirección del negocio).
   mapLat: 25.6866,
   mapLng: -100.3161,
 

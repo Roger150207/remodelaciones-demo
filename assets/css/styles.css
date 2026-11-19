@@ -1,5 +1,5 @@
 /* =========================================================
-   Reforma Innovare · Landing demo
+   Reforma Innovare · Landing
    Claro, sobrio y mobile-first. Sin dependencias externas.
    ========================================================= */
 
@@ -59,9 +59,6 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 .skip:focus { top: 12px; }
 .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
 
-/* ---------- Aviso de sitio de ejemplo ---------- */
-.demo-strip { padding: 7px 12px; background: var(--tint); color: var(--muted); font-size: .75rem; font-weight: 550; text-align: center; border-bottom: 1px solid var(--line); }
-
 /* ---------- Botones ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: .55em;
@@ -110,8 +107,6 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 .sec-head h2 { font-size: clamp(2rem, 7vw, 2.75rem); }
 .sec-sub { margin-top: 10px; font-size: 1.0625rem; color: var(--muted); }
 .sec-cta { margin-top: 32px; }
-.badge { display: inline-block; margin-top: 14px; padding: 6px 12px; border-radius: 999px; background: #fff3d6; color: #6a4a10; border: 1px solid #ecd9a8; font-size: .8125rem; font-weight: 650; line-height: 1.35; }
-.badge--sm { margin: 0 6px 0 0; padding: 2px 9px; font-size: .75rem; }
 
 /* ---------- Hero ---------- */
 .hero { padding: 36px 0 56px; }
@@ -280,7 +275,6 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 .footer__in { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
 .footer__info { display: grid; gap: 4px; max-width: 60ch; }
 .footer__name { font-weight: 650; color: var(--ink); font-size: .9375rem; }
-.footer__note { margin-top: 8px; }
 .footer__qr { margin: 0; display: flex; align-items: center; gap: 12px; }
 .footer__qr img { width: 72px; height: 72px; padding: 4px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
 .footer__qr figcaption { max-width: 14ch; font-size: .8125rem; line-height: 1.35; }
