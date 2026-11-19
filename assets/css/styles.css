@@ -9,9 +9,10 @@
 @font-face { font-family: "Cormorant Fallback"; src: local("Georgia"), local("Times New Roman"); size-adjust: 91%; }
 
 :root {
-  --bg: #fbfaf7;
+  color-scheme: light only;
+  --bg: #ffffff;
   --surface: #fff;
-  --tint: #f3f1ec;
+  --tint: #f5f5f7;
   --ink: #1d1d1f;
   --ink-2: #1d1d1f;
   --muted: #3a3a3c;
@@ -85,9 +86,9 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 .btn--wa:hover { background: var(--wa-hi); }
 
 /* ---------- Barra superior ---------- */
-.topbar { position: sticky; top: 0; z-index: 50; background: rgba(251, 250, 247, .94); border-bottom: 1px solid var(--line); }
+.topbar { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .94); border-bottom: 1px solid var(--line); }
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .topbar { background: rgba(251, 250, 247, .78); -webkit-backdrop-filter: saturate(1.6) blur(16px); backdrop-filter: saturate(1.6) blur(16px); }
+  .topbar { background: rgba(255, 255, 255, .78); -webkit-backdrop-filter: saturate(1.6) blur(16px); backdrop-filter: saturate(1.6) blur(16px); }
 }
 .topbar__in { display: flex; align-items: center; gap: 10px; min-width: 0; height: var(--head); }
 .topbar__cta { flex: none; }
