@@ -377,4 +377,13 @@ const CONFIG = {
     mbar.classList.add('is-on');
   }
 
+  /* ---------- Video del inicio ---------- */
+  const promo = $('#promo');
+  if (promo) {
+    if (reduceMotion) { promo.removeAttribute('autoplay'); promo.pause(); }
+    else if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => { if (e.isIntersecting) { const p = promo.play(); if (p && p.catch) p.catch(() => {}); } else promo.pause(); }, { threshold: 0.15 }).observe(promo);
+    }
+  }
+
 })();
