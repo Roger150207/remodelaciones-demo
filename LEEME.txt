@@ -8,19 +8,28 @@ SUBIRLA A VERCEL (3 pasos)
 
 ANTES DE SUBIRLA: cambia tu WhatsApp
 - Abre assets/js/app.js. Hasta arriba está CONFIG.
-- whatsapp: '524441109812' (ya configurado). Formato: 52 + 10 dígitos, sin espacios.
+- whatsapp: '524441107319' (ya configurado). Formato: 52 + 10 dígitos, sin espacios.
+  Las cotizaciones se abren en https://wa.me/524441107319?text=...
 - minBudget: presupuesto mínimo (hoy $30,000). El primer rango de "budgets" debe terminar en ese número.
 - businessName, city, services, zones, urgency, mapsUrl, reviewsUrl, mapLat, mapLng: todo se cambia ahí mismo.
+  mapsUrl y reviewsUrl están vacíos a propósito: pon solo la ficha de Google Maps REAL del negocio.
 - promesaRespuesta, promesaVisita, promesaPresupuesto: las 3 promesas del negocio. Se cambian una vez y se actualizan en toda la página.
 
 PARA UN CLIENTE NUEVO
 - Cambia CONFIG en app.js y el <title> de index.html.
-- Fotos: están en assets/img/ en dos tamaños (normal y -640 para celular), formato .webp.
-  Para cambiarlas, reemplaza los archivos con el mismo nombre o cambia la ruta en index.html
-  (hero arriba y galería "Trabajos"). Máximo 1200 px de ancho.
+- Fotos: hoy la página muestra recuadros "Foto pendiente" con el nombre exacto de cada archivo.
+  La lista completa (nombre, tamaño y qué foto va) está en los comentarios de index.html y en la lista de imágenes
+  faltantes que se entregó con este rediseño.
+  Formato .webp, dos tamaños: normal (1600-2400 px de lado largo) y -640 / -1280 para celular.
+  Para poner una foto: copia el archivo a assets/img/ y en index.html cambia el <figure class="ph">
+  por la etiqueta <img> que está en el comentario justo arriba (hero y galería "Trabajos").
+  En Servicios usa: <img class="card__img" src="assets/img/servicio-cocina-640.webp"
+  srcset="assets/img/servicio-cocina-640.webp 640w, assets/img/servicio-cocina.webp 1600w"
+  sizes="(min-width: 960px) 33vw, 82vw" width="1600" height="1200" alt="..." loading="lazy" decoding="async">
+  En la galería, al usar <button class="g__btn">, la vista ampliada se activa sola.
 - El QR (assets/img/qr-sitio.svg) apunta a remodelaciones.heyelevu.com. Si cambia el dominio, hay que regenerarlo.
-- Quita los avisos "de ejemplo" solo cuando pongas testimonios, cifras y fotos reales.
+- Quita los avisos "de ejemplo" (franja de arriba, testimonios, galería y pie) solo cuando pongas testimonios y fotos reales.
 
 NOTAS
-- La página NO se indexa en Google (meta robots noindex, nofollow), porque las cifras y testimonios son de ejemplo.
+- La página NO se indexa en Google (meta robots noindex, nofollow y robots.txt con Disallow: /), porque es de ejemplo.
 - No usa servidor, base de datos ni APIs. El formulario solo abre WhatsApp con el mensaje armado.

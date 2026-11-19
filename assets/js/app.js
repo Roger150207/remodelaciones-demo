@@ -4,7 +4,7 @@
 const CONFIG = {
   // WhatsApp que recibe las cotizaciones: 52 + 10 dígitos, sin espacios ni signos.
   whatsapp: '524441107319',
-  // Teléfono para el botón "Llamar" en celular (10 dígitos). Déjalo vacío '' para ocultarlo.
+  // Teléfono del negocio (10 dígitos). Hoy no se muestra botón de llamar; déjalo vacío si no hay.
   telefono: '',
 
   businessName: 'Reforma Innovare',
@@ -42,11 +42,13 @@ const CONFIG = {
     { label: 'Solo estoy cotizando', sub: 'Quiero comparar opciones', icon: 'lupa' },
   ],
 
-  // Ubicación en Google Maps (ficha del negocio, reseñas y mapa incrustado).
-  mapsUrl: 'https://www.google.com/maps/place/Casa+del+Valle:+Decks,+Tapices,+Cortinas+y+Persianas/@25.6611881,-100.3029777,17z/data=!3m1!4b1!4m6!3m5!1s0x8662bfcce28db05f:0x23b0aa2322c97a64!8m2!3d25.6611881!4d-100.3029777!16s%2Fg%2F1th49tw7',
-  reviewsUrl: 'https://www.google.com/maps/place/Casa+del+Valle:+Decks,+Tapices,+Cortinas+y+Persianas/@25.6611881,-100.3029777,17z/data=!3m1!4b1!4m6!3m5!1s0x8662bfcce28db05f:0x23b0aa2322c97a64!8m2!3d25.6611881!4d-100.3029777!16s%2Fg%2F1th49tw7',
-  mapLat: 25.6611881,
-  mapLng: -100.3029777,
+  // Ubicación en Google Maps. Vacío a propósito: esta es una página de ejemplo.
+  // Pon aquí la ficha REAL del negocio (nunca la de otro negocio). Si quedan vacíos, no se muestra ningún enlace.
+  mapsUrl: '',
+  reviewsUrl: '',
+  // Centro genérico de Monterrey (ubicación de ejemplo, no es la dirección de ningún negocio).
+  mapLat: 25.6866,
+  mapLng: -100.3161,
 
   siteUrl: 'https://remodelaciones.heyelevu.com',
 };
@@ -85,13 +87,13 @@ const CONFIG = {
 
   /* ---------- Aparición al hacer scroll ---------- */
   const reveals = $$('.reveal');
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    reveals.forEach((el) => el.classList.add('is-in'));
-  } else {
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    // Solo aquí se activa el estado oculto inicial: sin JS, todo se ve.
+    document.documentElement.classList.add('rv');
     reveals.forEach((el) => {
       const sib = Array.from(el.parentElement.children).filter((c) => c.classList.contains('reveal'));
       const i = sib.indexOf(el);
-      if (i > 0) el.style.setProperty('--d', Math.min(i, 5) * 0.09 + 's');
+      if (i > 0) el.style.setProperty('--d', Math.min(i, 3) * 0.06 + 's');
     });
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
@@ -99,65 +101,13 @@ const CONFIG = {
     reveals.forEach((el) => io.observe(el));
   }
 
-  /* ---------- Hero: presentación de fotos tipo video ---------- */
-  const hero = $('.hero');
-  const slides = $$('.hero__slide');
-  const bars = $('#reel-bars');
-  const capEl = $('#reel-cap');
-  const toggle = $('#reel-toggle');
-  if (hero && slides.length && bars) {
-    const DUR = 7000;
-    bars.style.setProperty('--dur', DUR + 'ms');
-    slides.forEach(() => { const s = document.createElement('span'); s.append(document.createElement('i')); bars.append(s); });
-    const segs = Array.from(bars.children);
-    let idx = 0; let timer = null; let paused = reduceMotion; let started = 0; let remaining = DUR;
-
-    const load = (img) => {
-      if (img.dataset.src) {
-        if (img.dataset.srcset) img.srcset = img.dataset.srcset;
-        img.src = img.dataset.src;
-        delete img.dataset.src; delete img.dataset.srcset;
-      }
-    };
-    const paint = () => {
-      slides.forEach((s, i) => s.classList.toggle('is-on', i === idx));
-      segs.forEach((s, i) => {
-        s.classList.toggle('done', i < idx);
-        s.classList.remove('now'); void s.offsetWidth;
-        if (i === idx) s.classList.add('now');
-      });
-      capEl.textContent = slides[idx].dataset.cap || '';
-      load(slides[(idx + 1) % slides.length]);
-    };
-    const schedule = (ms) => {
-      clearTimeout(timer); started = Date.now(); remaining = ms;
-      timer = setTimeout(() => { idx = (idx + 1) % slides.length; paint(); schedule(DUR); }, ms);
-    };
-    const setPaused = (p) => {
-      paused = p;
-      hero.classList.toggle('is-paused', p);
-      toggle.setAttribute('aria-label', p ? 'Reproducir presentación de fotos' : 'Pausar presentación de fotos');
-      if (p) { clearTimeout(timer); remaining = Math.max(0, remaining - (Date.now() - started)); }
-      else schedule(remaining || DUR);
-    };
-    toggle.addEventListener('click', () => setPaused(!paused));
-    // Pausa cuando el hero no se ve (ahorra batería y datos)
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(([e]) => {
-        if (paused) return;
-        if (e.isIntersecting) schedule(remaining || DUR);
-        else { clearTimeout(timer); remaining = Math.max(0, remaining - (Date.now() - started)); }
-      }, { threshold: 0.05 }).observe(hero);
-    }
-    paint();
-    if (paused) { hero.classList.add('is-paused'); toggle.setAttribute('aria-label', 'Reproducir presentación de fotos'); }
-  }
-
   /* ---------- Galería con vista ampliada ---------- */
   const lb = $('#lightbox');
   const items = $$('.g__btn');
   if (lb && items.length && typeof lb.showModal === 'function') {
-    const img = $('#lb-img'); const t = $('#lb-title'); const m = $('#lb-meta');
+    const img = document.createElement('img'); img.id = 'lb-img'; img.alt = '';
+    $('#lb-fig').prepend(img);
+    const t = $('#lb-title'); const m = $('#lb-meta');
     let cur = 0; let opener = null;
     const show = (i) => {
       cur = (i + items.length) % items.length;
@@ -188,22 +138,6 @@ const CONFIG = {
   } else {
     // Sin <dialog>: abrir la foto directo
     items.forEach((b) => b.addEventListener('click', () => window.open(b.dataset.full, '_blank')));
-  }
-
-  /* ---------- Mapa: se carga solo al tocarlo (página más rápida) ---------- */
-  const mapBtn = $('#map-load');
-  if (mapBtn) {
-    mapBtn.addEventListener('click', () => {
-      const f = document.createElement('iframe');
-      f.title = 'Mapa de ubicación';
-      f.loading = 'lazy';
-      f.referrerPolicy = 'no-referrer-when-downgrade';
-      f.src = `https://maps.google.com/maps?q=${CONFIG.mapLat},${CONFIG.mapLng}&z=16&hl=es&output=embed`;
-      const frame = $('#map-frame');
-      frame.append(f);
-      mapBtn.remove();
-      const art = $('.map__art', frame); if (art) art.remove();
-    });
   }
 
   /* ---------- Iconos del formulario ---------- */
@@ -284,7 +218,7 @@ const CONFIG = {
       btnBack.hidden = n === 1 || done;
       btnNext.hidden = n >= 5;
       btnSend.hidden = n !== 5;
-      count.textContent = n <= 4 ? `Paso ${n} de 4` : 'Último paso: tus datos';
+      count.textContent = n <= 4 ? `Pregunta ${n} de 4` : 'Tus datos para contestarte';
       const pct = Math.min(100, n * 20);
       bar.style.width = pct + '%';
       progress.setAttribute('aria-valuenow', String(pct));
@@ -425,57 +359,9 @@ const CONFIG = {
     let ctaVisible = true; let quoteVisible = false;
     const upd = () => mbar.classList.toggle('is-on', !ctaVisible && !quoteVisible);
     new IntersectionObserver(([e]) => { ctaVisible = e.isIntersecting; upd(); }, { threshold: 0 }).observe(heroCta);
-    if (quote) new IntersectionObserver(([e]) => { quoteVisible = e.isIntersecting; upd(); }, { threshold: 0.2 }).observe(quote);
+    if (quote) new IntersectionObserver(([e]) => { quoteVisible = e.isIntersecting; upd(); }, { threshold: 0 }).observe(quote);
   } else if (mbar) {
     mbar.classList.add('is-on');
   }
-
-  /* ---------- Guardar, compartir y contacto ---------- */
-  const toast = $('#toast');
-  const say = (msg) => { toast.textContent = msg; clearTimeout(say.t); say.t = setTimeout(() => { toast.textContent = ''; }, 4000); };
-  const pageUrl = /^https?:/.test(location.href) ? location.href.split('#')[0] : CONFIG.siteUrl;
-
-  let installEvt = null;
-  window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); installEvt = e; });
-  $('#btn-install').addEventListener('click', async () => {
-    if (installEvt) {
-      installEvt.prompt();
-      const choice = await installEvt.userChoice.catch(() => null);
-      if (choice && choice.outcome === 'accepted') say('¡Listo! Ya está en tu pantalla de inicio.');
-      installEvt = null;
-      return;
-    }
-    const help = $('#install-help');
-    help.hidden = !help.hidden;
-  });
-
-  $('#btn-share').addEventListener('click', async () => {
-    const data = { title: CONFIG.businessName, text: `${CONFIG.businessName}: remodelaciones con garantía.`, url: pageUrl };
-    if (navigator.share) {
-      try { await navigator.share(data); } catch (_) { /* cancelado */ }
-      return;
-    }
-    try { await navigator.clipboard.writeText(pageUrl); say('Enlace copiado. Pégalo en WhatsApp para compartirlo.'); }
-    catch (_) { say(pageUrl); }
-  });
-
-  $('#btn-vcard').addEventListener('click', () => {
-    const wa = CONFIG.whatsapp.replace(/\D/g, '');
-    const vcf = [
-      'BEGIN:VCARD', 'VERSION:3.0',
-      `FN:${CONFIG.businessName}`, `ORG:${CONFIG.businessName}`,
-      `TEL;TYPE=CELL:+${wa}`,
-      `URL:${CONFIG.siteUrl}`,
-      `NOTE:Remodelación y mantenimiento en ${CONFIG.city}`,
-      'END:VCARD',
-    ].join('\r\n');
-    const blob = new Blob([vcf], { type: 'text/vcard;charset=utf-8' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = CONFIG.businessName.replace(/[^\w\sáéíóúñ-]/gi, '').trim() + '.vcf';
-    document.body.append(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-    say('Abre el archivo descargado para guardar el contacto.');
-  });
 
 })();
