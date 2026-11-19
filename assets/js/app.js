@@ -382,7 +382,21 @@ const CONFIG = {
   if (promo) {
     if (reduceMotion) { promo.removeAttribute('autoplay'); promo.pause(); }
     else if ('IntersectionObserver' in window) {
-      new IntersectionObserver(([e]) => { if (e.isIntersecting) { const p = promo.play(); if (p && p.catch) p.catch(() => {}); } else promo.pause(); }, { threshold: 0.15 }).observe(promo);
+      new IntersectionObserver(([e]) => { if (e.isIntersecting) { const p = promo.play(); if (p && p.catch) p.catch(() => {}); } else if (promo.muted) promo.pause(); }, { threshold: 0.15 }).observe(promo);
+    }
+    const snd = $('#sound');
+    const sndT = $('#sound-t');
+    if (snd) {
+      const setUi = (on) => { snd.setAttribute('aria-pressed', String(on)); sndT.textContent = on ? 'Silenciar' : 'Activar sonido'; };
+      snd.addEventListener('click', () => {
+        if (promo.muted) {
+          // iOS: quitar el silencio dentro del toque del usuario y reproducir desde el inicio.
+          promo.muted = false; promo.currentTime = 0;
+          const p = promo.play();
+          if (p && p.catch) p.catch(() => { promo.muted = true; setUi(false); });
+          setUi(true);
+        } else { promo.muted = true; setUi(false); }
+      });
     }
   }
 
