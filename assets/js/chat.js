@@ -35,24 +35,15 @@
   var ICON_CHAT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>';
   var ICON_X = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 
-  var fab = el('button', 'chat-fab');
-  fab.type = 'button';
-  fab.setAttribute('aria-label', 'Abrir chat con Musee, asistente de Reforma Innovare');
-  fab.setAttribute('aria-haspopup', 'dialog');
-  fab.setAttribute('aria-expanded', 'false');
-  function photo(cls, size) {
-    var i = el('img', cls);
-    i.src = 'assets/img/musee-' + size + '.webp';
-    if (size === 192) i.srcset = 'assets/img/musee-96.webp 1x, assets/img/musee-192.webp 2x';
-    i.alt = 'Musee, asistente de Reforma Innovare';
-    i.width = size === 384 ? 96 : 48; i.height = i.width;
-    i.decoding = 'async';
-    return i;
+  var launch = document.getElementById('chat-launch');
+  var fab = document.getElementById('chat-fab');
+  var tip = document.getElementById('chat-tip');
+  if (!launch || !fab) {   /* respaldo si el HTML no trae el lanzador */
+    root.insertAdjacentHTML('afterbegin', '<div class="chat-launch" id="chat-launch"><div class="chat-launch__bob"><button type="button" class="chat-tip" id="chat-tip">¿Te ayudo?</button><button type="button" class="chat-fab" id="chat-fab" aria-label="Abrir chat con Musee, asistente de Reforma Innovare" aria-haspopup="dialog" aria-expanded="false"><img class="chat-fab__img" src="assets/img/musee-192.webp" srcset="assets/img/musee-96.webp 1x, assets/img/musee-192.webp 2x" alt="Musee, asistente de Reforma Innovare" width="72" height="72" decoding="async"></button></div></div>');
+    launch = document.getElementById('chat-launch');
+    fab = document.getElementById('chat-fab');
+    tip = document.getElementById('chat-tip');
   }
-  var fabImg = photo('chat-fab__img', 192);
-  fabImg.srcset = 'assets/img/musee-96.webp 1x, assets/img/musee-192.webp 2x';
-  fab.appendChild(fabImg);
-  fab.appendChild(el('span', 'chat-fab__t', 'Pregunta a Musee'));
 
   var panel = el('div', 'chat-panel');
   panel.id = 'chat-panel';
@@ -95,7 +86,7 @@
   form.appendChild(input); form.appendChild(send);
 
   panel.appendChild(head); panel.appendChild(log); panel.appendChild(actions); panel.appendChild(form);
-  root.appendChild(fab); root.appendChild(panel);
+  root.appendChild(panel);
 
   /* ---------- Mensajes ---------- */
   function scroll() { log.scrollTop = log.scrollHeight; }
@@ -306,7 +297,7 @@
     lastTrigger = document.activeElement === fab ? fab : fab;
     if (!greeted) {
       greeted = true;
-      var hi = addMsg('musee', '¡Hola! Soy Musee, la asistente de Reforma Innovare. Cuéntame, ¿qué te gustaría cambiar en tu casa?');
+      var hi = addMsg('musee', '¡Hola! Soy Musee, la asistente de Reforma Innovare 💚 ¿En qué espacio estás pensando?');
       if (getCount() >= LIMIT) showLimit();
       else addChips(FIRST, MORE);
     }
@@ -319,6 +310,7 @@
     if (restoreFocus !== false) fab.focus();
   }
   fab.addEventListener('click', openPanel);
+  if (tip) tip.addEventListener('click', openPanel);
   close.addEventListener('click', function () { closePanel(true); });
   form.addEventListener('submit', function (e) { e.preventDefault(); submit(input.value); });
   document.addEventListener('keydown', function (e) {
