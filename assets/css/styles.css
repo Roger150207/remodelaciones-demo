@@ -18,7 +18,7 @@
   --muted: #3a3a3c;
   --line: #e2dfd8;
   --line-2: #cfcac0;
-  --accent: #80602c;
+  --accent: #6b4f1f;
   --wa: #157a42;
   --wa-hi: #116937;
   --ok: #157a42;
@@ -291,7 +291,7 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 .mbar .btn { min-height: 54px; font-size: 1.0625rem; }
 
 /* ---------- Aparición suave (solo si app.js corre: añade .rv al <html>) ---------- */
-.rv .reveal { opacity: 0; transform: translateY(14px); transition: opacity .4s var(--ease), transform .4s var(--ease); transition-delay: var(--d, 0s); }
+.rv .reveal, .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
 .rv .reveal.is-in { opacity: 1; transform: none; }
 
 
@@ -370,3 +370,6 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .rv .reveal { opacity: 1; transform: none; }
 }
+
+/* Legibilidad forzada (iOS) */
+h1, h2, .hero__lead, .btn--ghost, .promises { color: var(--ink); opacity: 1; }
