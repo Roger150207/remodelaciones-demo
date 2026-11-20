@@ -1,0 +1,8 @@
+{
+  "name": "reforma-innovare",
+  "private": true,
+  "description": "Sitio de Reforma Innovare. @vercel/blob solo para persistir el tope mensual de Musee.",
+  "dependencies": {
+    "@vercel/blob": "^2.0.0"
+  }
+}

@@ -7,12 +7,14 @@
 
 const { SYSTEM, ESQUEMA, sanear, interpretar } = require('./_lib/musee-ai');
 const { crearCupo } = require('./_lib/cupo');
+const { crearGasto } = require('./_lib/gasto');
 
 const MODELO = 'claude-haiku-5-5';
 const MAX_TOKENS = 700;
 const TIMEOUT_MS = 9000;
 const API_URL = 'https://api.anthropic.com/v1/messages';
 const AVISO_CUPO = 'Hoy tuve muchas consultas; te puedo orientar con lo esencial o te armo el WhatsApp.';
+const AVISO_MES = 'Este mes ya alcancé el límite de consultas; te puedo orientar con lo esencial o te armo el WhatsApp.';
 
 function responder(res, status, payload) {
   res.statusCode = status;
@@ -51,6 +53,7 @@ function crearHandler(deps) {
   const env = deps.env || process.env;
   const fetchFn = deps.fetch || ((...a) => fetch(...a));
   const cupo = deps.cupo || crearCupo();
+  const gasto = deps.gasto || crearGasto({ env });
   const log = deps.log || ((...a) => console.error(...a));
   const timeoutMs = deps.timeoutMs || TIMEOUT_MS;
 
@@ -69,6 +72,9 @@ function crearHandler(deps) {
 
       const c = cupo.consumir(ipDe(req), body.conv);
       if (!c.ok) return respaldo(res, 200, 'cupo', { aviso: AVISO_CUPO });
+
+      const g = await gasto.puede();
+      if (!g.ok) return respaldo(res, 200, 'cupo_mes', { aviso: AVISO_MES });
 
       const ctrl = new AbortController();
       const timer = setTimeout(() => ctrl.abort(), timeoutMs);
@@ -95,9 +101,15 @@ function crearHandler(deps) {
 
       if (!r || !r.ok) {
         log('musee-ai: la API respondió', r ? r.status : 'sin respuesta');
+        try {
+          const errBody = r && typeof r.json === 'function' ? await r.json() : null;
+          if (errBody && errBody.usage) await gasto.registrar(errBody.usage);
+        } catch (_) { /* no registrar si no hay usage */ }
         return respaldo(res, 200, 'error');
       }
-      const salida = interpretar(await r.json());
+      const data = await r.json();
+      try { await gasto.registrar(data && data.usage); } catch (_) { /* el tope no debe tumbar la respuesta ya cobrada */ }
+      const salida = interpretar(data);
       if (!salida) {
         log('musee-ai: respuesta no utilizable');
         return respaldo(res, 200, 'error');
@@ -114,3 +126,4 @@ module.exports = crearHandler();
 module.exports.crearHandler = crearHandler;
 module.exports.MODELO = MODELO;
 module.exports.AVISO_CUPO = AVISO_CUPO;
+module.exports.AVISO_MES = AVISO_MES;
