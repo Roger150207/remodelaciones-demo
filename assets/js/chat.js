@@ -11,6 +11,12 @@
   var M = window.MuseeRespuestas;
   var offered = false;
   var lastTrigger = null;
+  /* Modo AI: intenta /api/chat; sin llave, sin cupo o con falla usa el motor fijo sin avisar del error */
+  var API = '/api/chat';
+  var WA_PREFIX = 'https://wa.me/' + WA + '?text=';
+  var aiOn = /^https?:$/.test(location.protocol) && typeof fetch === 'function';
+  var aiFails = 0;
+  var conv = Math.random().toString(36).slice(2, 12) + Date.now().toString(36);
 
   /* ---------- DOM ---------- */
   function el(tag, cls, text) {
@@ -150,6 +156,15 @@
     history.push({ role: 'user', content: text });
     input.value = '';
     busy = true;
+    if (aiOn) askAI(text); else answerFixed(text);
+  }
+
+  /* Respuestas fijas: el motor de siempre */
+  function answerFixed(text, aviso) {
+    if (aviso) {
+      addMsg('musee', aviso);
+      history.push({ role: 'assistant', content: aviso });
+    }
     var r = M.responder(text);
     addMsg('musee', r.a);
     history.push({ role: 'assistant', content: r.a });
@@ -160,6 +175,51 @@
     maybeOffer(r);
     scroll();
     input.focus();
+  }
+
+  function askAI(text) {
+    var typing = addMsg('musee', 'Escribiendo…');
+    typing.classList.add('chat-row--typing');
+    var done = false;
+    var ctrl = typeof AbortController === 'function' ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); finish(null, 0); }, 14000);
+    function finish(data, status) {
+      if (done) return;
+      done = true;
+      clearTimeout(timer);
+      typing.remove();
+      if (data && data.ok && typeof data.texto === 'string' && data.texto) {
+        aiFails = 0;
+        addMsg('musee', data.texto);
+        history.push({ role: 'assistant', content: data.texto });
+        history = history.slice(-12);
+        busy = false;
+        var wa = data.wa && typeof data.wa.url === 'string' && data.wa.url.indexOf(WA_PREFIX) === 0 ? data.wa.url : null;
+        if (wa) { offered = true; ctaButtons({ waLabel: 'Enviar mi resumen por WhatsApp', waHref: wa, cotizador: false }); }
+        if (data.chips && data.chips.length) addChips(data.chips.slice(0, 4));
+        scroll();
+        input.focus();
+        return;
+      }
+      /* Respaldo: sin llave o sin cupo se queda en fijo el resto de la visita; ante fallas, tras 2 */
+      var motivo = data && data.motivo;
+      var aviso = null;
+      if (status === 429 || motivo === 'cupo') { aiOn = false; aviso = (data && data.aviso) || 'Hoy tuve muchas consultas; te puedo orientar con lo esencial o te armo el WhatsApp.'; }
+      else if (motivo === 'sin_llave' || status === 404 || status === 405 || status === 501) aiOn = false;
+      else if (++aiFails >= 2) aiOn = false;
+      answerFixed(text, aviso);
+    }
+    try {
+      fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ conv: conv, messages: history.slice(-12) }),
+        signal: ctrl ? ctrl.signal : undefined
+      }).then(function (res) {
+        var st = res.status;
+        return res.json().then(function (d) { finish(d, st); }, function () { finish(null, st); });
+      }, function () { finish(null, 0); });
+    } catch (e) { finish(null, 0); }
   }
 
   /* ---------- Captura de contacto + wa.me ---------- */
