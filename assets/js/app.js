@@ -33,6 +33,7 @@ const CONFIG = {
     { label: 'Impermeabilización', icon: 'techo' },
     { label: 'Pisos y azulejo', icon: 'piso' },
     { label: 'Closets y carpintería', icon: 'closet' },
+    { label: 'Muebles de madera', icon: 'mueble' },
     { label: 'Remodelación integral', icon: 'muro' },
   ],
   zones: ['Monterrey', 'San Pedro', 'San Nicolás', 'Guadalupe', 'Apodaca', 'Otra zona'],
@@ -83,6 +84,63 @@ const CONFIG = {
   if (call) {
     const digits = CONFIG.telefono.replace(/\D/g, '');
     if (digits) call.href = 'tel:+52' + digits.slice(-10); else call.remove();
+  }
+
+  /* ---------- Prólogo: recorrido de entrada ---------- */
+  // Con animation-timeline lo anima CSS (clase intro-css desde la cabecera).
+  // Sin soporte, el avance --p (0 a 1) se calcula aquí con requestAnimationFrame.
+  // Con reduced-motion no hay escenas: queda la portada estática.
+  const root = document.documentElement;
+  const track = $('#intro-track');
+  const hero = $('#inicio');
+  const themeMeta = $('meta[name="theme-color"]');
+  const introListeners = [];
+  let inIntro = false;
+  if (track) {
+    const jsDriven = !reduceMotion && !root.classList.contains('intro-css');
+    if (jsDriven) root.classList.add('intro-on');
+    let ticking = false;
+    let lastP = -1;
+    const update = () => {
+      ticking = false;
+      const r = track.getBoundingClientRect();
+      if (jsDriven) {
+        const span = r.height - window.innerHeight;
+        const p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0;
+        if (Math.abs(p - lastP) > 0.0005) { lastP = p; track.style.setProperty('--p', p.toFixed(4)); }
+      }
+      const now = r.bottom > 72;
+      if (now !== inIntro) {
+        inIntro = now;
+        root.classList.toggle('at-intro', now);
+        if (themeMeta) themeMeta.setAttribute('content', now ? '#152f29' : '#f6f3ed');
+        introListeners.forEach((f) => f());
+      }
+    };
+    const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request);
+    inIntro = !root.classList.contains('at-intro');
+    update();
+
+    // «Saltar introducción» (y la marca): brinco directo al sitio, sin recorrer las escenas.
+    if (hero) {
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest && e.target.closest('a[href="#inicio"]');
+        if (!a) return;
+        const top = hero.getBoundingClientRect().top + window.scrollY;
+        if (window.scrollY >= top - 2) return;
+        e.preventDefault();
+        const prev = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        window.scrollTo(0, top);
+        root.style.scrollBehavior = prev;
+        hero.focus({ preventScroll: true });
+        request();
+      });
+    }
+  } else {
+    root.classList.remove('at-intro');
   }
 
   /* ---------- Aparición al hacer scroll ---------- */
@@ -160,6 +218,7 @@ const CONFIG = {
     techo: '<path d="M4 22 24 8l20 14M9 19v21h30V19"/><path d="M18 28c0 2-2 3-2 5a2 2 0 0 0 4 0c0-2-2-3-2-5zM30 26c0 2-2 3-2 5a2 2 0 0 0 4 0c0-2-2-3-2-5z"/>',
     piso: '<path d="M6 6h36v36H6zM6 18h36M6 30h36M18 6v36M30 6v36"/>',
     closet: '<path d="M8 4h32v40H8zM24 4v40M19 22v6M29 22v6M8 38h32"/>',
+    mueble: '<path d="M6 14h36v20H6zM6 24h36M20 18h8M20 28h8M10 34v6M38 34v6"/>',
     muro: '<path d="M4 10h40v30H4zM4 20h40M4 30h40M16 10v10M32 10v10M10 20v10M24 20v10M38 20v10M16 30v10M32 30v10"/>',
     rayo: '<path d="M26 4 10 27h12l-2 17 16-23H24z"/>',
     calendario: '<path d="M6 10h36v32H6zM6 19h36M15 4v10M33 4v10M14 27h4M22 27h4M30 27h4M14 34h4M22 34h4"/>',
@@ -370,7 +429,9 @@ const CONFIG = {
   const quote = $('#filtro');
   if (mbar && heroCta && 'IntersectionObserver' in window) {
     let ctaVisible = true; let quoteVisible = false;
-    const upd = () => mbar.classList.toggle('is-on', !ctaVisible && !quoteVisible);
+    // Durante el prólogo tampoco aparece: el encabezado ya tiene «Cotizar».
+    const upd = () => mbar.classList.toggle('is-on', !ctaVisible && !quoteVisible && !inIntro);
+    introListeners.push(upd);
     new IntersectionObserver(([e]) => { ctaVisible = e.isIntersecting; upd(); }, { threshold: 0 }).observe(heroCta);
     if (quote) new IntersectionObserver(([e]) => { quoteVisible = e.isIntersecting; upd(); }, { threshold: 0 }).observe(quote);
   } else if (mbar) {
