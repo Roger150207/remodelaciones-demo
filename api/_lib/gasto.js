@@ -65,12 +65,10 @@ function crearGasto(opts) {
       return {
         get: async (mes) => {
           try {
-            const r = await blob.get(BLOB_PATH + '/' + mes + '.json', { access: 'private' });
-            if (!r) return null;
-            const txt = typeof r === 'string' ? r
-              : (r && typeof r.text === 'function' ? await r.text()
-                : (r && r.stream ? await new Response(r.stream).text() : JSON.stringify(r)));
-            const d = typeof txt === 'string' ? JSON.parse(txt) : txt;
+            const r = await blob.get(BLOB_PATH + '/' + mes + '.json', { access: 'private', useCache: false });
+            if (!r || !r.stream) return null;
+            const txt = await new Response(r.stream).text();
+            const d = JSON.parse(txt);
             if (d && d.mes === mes && typeof d.nanos === 'number') return d;
           } catch (_) { /* no existe todavía */ }
           return null;
