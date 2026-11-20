@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://remodelaciones.heyelevu.com/">
 <meta name="color-scheme" content="light only">
 <meta name="supported-color-schemes" content="light">
-<meta name="theme-color" content="#152f29">
+<meta name="theme-color" content="#161310">
 <meta property="og:title" content="Reforma Innovare · Cocinas y carpintería a la medida en Monterrey">
 <meta property="og:description" content="Tu cocina nueva, a tiempo y al precio que firmaste. Cotiza en 1 minuto.">
 <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
 <link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/musee-192.webp" imagesrcset="assets/img/musee-96.webp 1x, assets/img/musee-192.webp 2x">
-<link rel="stylesheet" href="assets/css/styles.css?v=14">
+<link rel="stylesheet" href="assets/css/styles.css?v=15">
 <script>
 /* Prólogo: el modo con escenas solo se activa si hay movimiento permitido.
    Con animation-timeline lo maneja CSS; si no, app.js activa su respaldo. */
@@ -47,7 +47,7 @@
       <span class="brand__name" data-cfg="businessName">Reforma Innovare</span>
     </a>
     <nav class="nav" aria-label="Secciones">
-      <a href="#servicios">Servicios</a>
+      <a href="#servicios">Categorías</a>
       <a href="#materiales">Materiales</a>
       <a href="#como-funciona">Cómo trabajamos</a>
       <a href="#estilos">Estilos</a>
@@ -67,7 +67,7 @@
 
         <figure class="scene scene--2">
           <div class="scene__media">
-            <img src="assets/img/hero-cocina-1280.webp" srcset="assets/img/hero-cocina-1280.webp 1280w, assets/img/hero-cocina.webp 2400w" sizes="100vw" width="2400" height="1600" alt="Cocina clara con isla, cubierta blanca y gabinetes de madera, junto a un ventanal" decoding="async">
+            <img src="assets/img/v15-hero-cocina-1280.webp" srcset="assets/img/v15-hero-cocina-640.webp 640w, assets/img/v15-hero-cocina-1280.webp 1280w" sizes="100vw" width="1280" height="720" alt="Cocina con isla de nogal, cubierta de piedra clara y ventanal hacia el monte" decoding="async" fetchpriority="high">
           </div>
           <figcaption class="scene__cap">
             <span class="scene__n">01</span>
@@ -78,7 +78,7 @@
 
         <figure class="scene scene--3">
           <div class="scene__media">
-            <img src="assets/img/intro-material-1280.webp" srcset="assets/img/intro-material-1280.webp 1280w, assets/img/intro-material.webp 2400w" sizes="100vw" width="2400" height="1600" alt="Detalle de chapa de madera, herraje de latón y canto de cubierta clara" loading="lazy" decoding="async">
+            <img src="assets/img/intro-material-1280.webp" srcset="assets/img/intro-material-1280.webp 1280w, assets/img/intro-material.webp 2400w" sizes="100vw" width="2400" height="1600" alt="Detalle de chapa de madera, herraje metálico y canto de cubierta clara" loading="lazy" decoding="async">
           </div>
           <figcaption class="scene__cap">
             <span class="scene__n">02</span>
@@ -114,136 +114,218 @@
   </div>
 </section>
 
-<!-- 2 · HERO -->
+<!-- 2 · HERO: foto a sangre -->
 <section class="hero" id="inicio" aria-labelledby="hero-t" tabindex="-1">
+  <div class="hero__media">
+    <img src="assets/img/v15-hero-cocina.webp" srcset="assets/img/v15-hero-cocina-640.webp 640w, assets/img/v15-hero-cocina-1280.webp 1280w" sizes="100vw" width="1280" height="720" alt="Cocina de nogal con isla y cubierta de piedra clara, junto a un ventanal" loading="lazy" decoding="async">
+  </div>
   <div class="wrap hero__in">
     <p class="pill"><span>Cocinas, carpintería y remodelación · <span data-cfg="city">Monterrey</span></span></p>
     <h1 id="hero-t">Tu cocina nueva, a tiempo y al <em>precio que firmaste</em>.</h1>
-    <p class="hero__lead">Diseñamos, fabricamos e instalamos tu cocina, baño, closet o mueble de madera con un solo equipo. Visita sin costo, presupuesto por escrito y garantía en mano de obra.</p>
+    <p class="hero__lead">Diseñamos, fabricamos e instalamos. Visita sin costo, presupuesto por escrito y garantía en mano de obra.</p>
     <div class="hero__ctas">
       <a class="btn btn--primary btn--lg" href="#filtro">Cotizar <span aria-hidden="true">→</span></a>
-      <a class="btn btn--ghost btn--lg" href="#servicios">Ver servicios</a>
+      <a class="btn btn--glass btn--lg" href="#servicios">Ver categorías</a>
     </div>
     <p class="hero__micro">Sin compromiso · Te contestamos por WhatsApp el mismo día hábil</p>
   </div>
+  <p class="ref-tag ref-tag--hero">Imagen de referencia de estilo</p>
+</section>
 
-  <div class="wrap stage">
-    <div class="stage__frame">
-      <video class="stage__video" id="promo" autoplay muted loop playsinline preload="metadata" poster="assets/video/reforma-promo-poster.webp" aria-label="Video promocional de Reforma Innovare: cocinas integrales a la medida">
-        <source src="assets/video/reforma-promo.mp4?v=13" type="video/mp4">
-      </video>
-      <button class="sound" type="button" id="sound" aria-pressed="false">
-        <svg class="sound__on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zM16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>
-        <svg class="sound__off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zM17 9l5 6M22 9l-5 6"/></svg>
-        <span id="sound-t">Activar sonido</span>
-      </button>
-    </div>
+<!-- 2b · VIDEO + lo que firmas -->
+<section class="promo" aria-label="Video promocional y lo que firmas con nosotros">
+  <div class="wrap promo__in">
     <ul class="chips" aria-label="Lo que firmas con nosotros">
       <li><span class="chip__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6"/></svg></span><span><b>Precio cerrado</b><small>Por escrito, antes de empezar</small></span></li>
       <li><span class="chip__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v14H4zM4 10h16M9 3v5M15 3v5"/></svg></span><span><b>Fecha de entrega</b><small>Queda en tu presupuesto</small></span></li>
       <li><span class="chip__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6zM9 12l2 2 4-4"/></svg></span><span><b>Garantía</b><small>En mano de obra, por escrito</small></span></li>
     </ul>
+    <div class="stage reveal">
+      <div class="stage__frame">
+        <video class="stage__video" id="promo" autoplay muted loop playsinline preload="metadata" poster="assets/video/reforma-promo-poster.webp" aria-label="Video promocional de Reforma Innovare: cocinas integrales a la medida">
+          <source src="assets/video/reforma-promo.mp4?v=13" type="video/mp4">
+        </video>
+        <button class="sound" type="button" id="sound" aria-pressed="false">
+          <svg class="sound__on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zM16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>
+          <svg class="sound__off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zM17 9l5 6M22 9l-5 6"/></svg>
+          <span id="sound-t">Activar sonido</span>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- 3 · SERVICIOS: capítulos por oficio -->
-<section class="section" id="servicios" aria-labelledby="serv-t">
+<!-- 3 · CATEGORÍAS: escenario interactivo + capítulos por oficio -->
+<section class="section section--cats" id="servicios" aria-labelledby="serv-t">
   <div class="wrap">
-    <header class="sec-head reveal">
-      <p class="kicker">Servicios</p>
-      <h2 id="serv-t">Cinco oficios, <span class="soft">un solo equipo.</span></h2>
-      <p class="sec-sub">Cada proyecto se diseña para tu casa y para cómo la usas. Lo fabricamos y lo instalamos nosotros, con un solo presupuesto y una sola persona que te atiende.</p>
-      <nav class="chapter-index" aria-label="Servicios">
+    <header class="sec-head sec-head--row reveal">
+      <div>
+        <p class="kicker">Categorías</p>
+        <h2 id="serv-t">Cinco oficios, <em>un solo equipo.</em></h2>
+      </div>
+      <p class="sec-sub">Elige una categoría. Cada una se diseña para tu casa y la instalamos nosotros.</p>
+    </header>
+  </div>
+
+  <div class="showcase reveal" id="showcase">
+    <div class="showcase__stage">
+      <div class="showcase__panel is-active" role="tabpanel" id="panel-cocinas" aria-labelledby="tab-cocinas">
+        <img src="assets/img/v15-cat-cocina.webp" srcset="assets/img/v15-cat-cocina-640.webp 640w, assets/img/v15-cat-cocina.webp 1152w" sizes="(min-width: 1320px) 1280px, 100vw" width="1152" height="864" alt="Cocina con muebles de madera oscura, cubierta clara y luz natural" loading="lazy" decoding="async">
+        <div class="showcase__cap">
+          <p class="showcase__n">01 — 05</p>
+          <h3>Cocinas integrales a la medida</h3>
+          <p>Pensada para cómo cocinas tú. La fabricamos y la instalamos completa.</p>
+          <div class="showcase__ctas"><a class="btn btn--primary" href="#filtro">Cotizar esta obra</a><a class="link-arrow link-arrow--light" href="#cocinas">Ver detalles <span aria-hidden="true">↓</span></a></div>
+        </div>
+      </div>
+      <div class="showcase__panel" role="tabpanel" id="panel-banos" aria-labelledby="tab-banos">
+        <img src="assets/img/v15-cat-bano.webp" srcset="assets/img/v15-cat-bano-640.webp 640w, assets/img/v15-cat-bano.webp 1152w" sizes="(min-width: 1320px) 1280px, 100vw" width="1152" height="864" alt="Baño con muro de piedra acanalada, cancel de cristal y mueble flotante de nogal" loading="lazy" decoding="async">
+        <div class="showcase__cap">
+          <p class="showcase__n">02 — 05</p>
+          <h3>Baños</h3>
+          <p>Regadera, cancel, mueble y azulejo. Entregamos limpio.</p>
+          <div class="showcase__ctas"><a class="btn btn--primary" href="#filtro">Cotizar esta obra</a><a class="link-arrow link-arrow--light" href="#banos">Ver detalles <span aria-hidden="true">↓</span></a></div>
+        </div>
+      </div>
+      <div class="showcase__panel" role="tabpanel" id="panel-closets" aria-labelledby="tab-closets">
+        <img src="assets/img/v15-cat-closet.webp" srcset="assets/img/v15-cat-closet-640.webp 640w, assets/img/v15-cat-closet.webp 1152w" sizes="(min-width: 1320px) 1280px, 100vw" width="1152" height="864" alt="Vestidor de madera con repisas, cajonera e iluminación cálida" loading="lazy" decoding="async">
+        <div class="showcase__cap">
+          <p class="showcase__n">03 — 05</p>
+          <h3>Closets y vestidores</h3>
+          <p>Cada cosa con su lugar, a la medida del cuarto.</p>
+          <div class="showcase__ctas"><a class="btn btn--primary" href="#filtro">Cotizar esta obra</a><a class="link-arrow link-arrow--light" href="#closets">Ver detalles <span aria-hidden="true">↓</span></a></div>
+        </div>
+      </div>
+      <div class="showcase__panel" role="tabpanel" id="panel-carpinteria" aria-labelledby="tab-carpinteria">
+        <img src="assets/img/v15-cat-carpinteria.webp" srcset="assets/img/v15-cat-carpinteria-640.webp 640w, assets/img/v15-cat-carpinteria.webp 1152w" sizes="(min-width: 1320px) 1280px, 100vw" width="1152" height="864" alt="Mueble de madera a la medida con detalles de carpintería fina" loading="lazy" decoding="async">
+        <div class="showcase__cap">
+          <p class="showcase__n">04 — 05</p>
+          <h3>Carpintería y muebles de madera</h3>
+          <p>El mueble que falta, hecho para el lugar donde va.</p>
+          <div class="showcase__ctas"><a class="btn btn--primary" href="#filtro">Cotizar esta obra</a><a class="link-arrow link-arrow--light" href="#carpinteria">Ver detalles <span aria-hidden="true">↓</span></a></div>
+        </div>
+      </div>
+      <div class="showcase__panel" role="tabpanel" id="panel-integral" aria-labelledby="tab-integral">
+        <img src="assets/img/v15-cat-integral-1280.webp" srcset="assets/img/v15-cat-integral-640.webp 640w, assets/img/v15-cat-integral-1280.webp 1280w" sizes="(min-width: 1320px) 1280px, 100vw" width="1280" height="720" alt="Estancia abierta con muro de piedra, sofá claro y cocina de madera al fondo" loading="lazy" decoding="async">
+        <div class="showcase__cap">
+          <p class="showcase__n">05 — 05</p>
+          <h3>Remodelación integral</h3>
+          <p>Varios espacios, un solo presupuesto y una sola fecha de entrega.</p>
+          <div class="showcase__ctas"><a class="btn btn--primary" href="#filtro">Cotizar esta obra</a><a class="link-arrow link-arrow--light" href="#integral">Ver detalles <span aria-hidden="true">↓</span></a></div>
+        </div>
+      </div>
+      <p class="ref-tag ref-tag--stage">Referencias de estilo</p>
+    </div>
+    <div class="showcase__tabs" role="tablist" aria-label="Categorías" id="showcase-tabs">
+      <button class="showcase__tab" type="button" role="tab" id="tab-cocinas" aria-controls="panel-cocinas" aria-selected="true"><span class="showcase__tn">01</span>Cocinas<i aria-hidden="true"></i></button>
+      <button class="showcase__tab" type="button" role="tab" id="tab-banos" aria-controls="panel-banos" aria-selected="false" tabindex="-1"><span class="showcase__tn">02</span>Baños<i aria-hidden="true"></i></button>
+      <button class="showcase__tab" type="button" role="tab" id="tab-closets" aria-controls="panel-closets" aria-selected="false" tabindex="-1"><span class="showcase__tn">03</span>Closets<i aria-hidden="true"></i></button>
+      <button class="showcase__tab" type="button" role="tab" id="tab-carpinteria" aria-controls="panel-carpinteria" aria-selected="false" tabindex="-1"><span class="showcase__tn">04</span>Carpintería<i aria-hidden="true"></i></button>
+      <button class="showcase__tab" type="button" role="tab" id="tab-integral" aria-controls="panel-integral" aria-selected="false" tabindex="-1"><span class="showcase__tn">05</span>Integral<i aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="chapters" id="capitulos">
+    <nav class="catbar" id="catbar" aria-label="Categorías">
+      <div class="catbar__in">
         <a href="#cocinas"><span>01</span>Cocinas</a>
         <a href="#banos"><span>02</span>Baños</a>
         <a href="#closets"><span>03</span>Closets y vestidores</a>
         <a href="#carpinteria"><span>04</span>Carpintería y muebles</a>
         <a href="#integral"><span>05</span>Remodelación integral</a>
-      </nav>
-    </header>
-
-    <article class="chapter chapter--lead reveal" id="cocinas" aria-labelledby="ch-cocina">
-      <div class="chapter__media">
-        <img src="assets/img/galeria-03-640.webp" srcset="assets/img/galeria-03-640.webp 640w, assets/img/galeria-03.webp 1600w" sizes="(min-width: 960px) 58vw, 100vw" width="1600" height="1067" alt="Cocina con isla de madera clara, cubierta blanca y bancos de madera" loading="lazy" decoding="async">
       </div>
-      <div class="chapter__copy">
-        <p class="chapter__n"><span>01</span>Especialidad</p>
-        <h3 id="ch-cocina">Cocinas integrales a la medida</h3>
-        <p class="chapter__lead">La cocina se diseña según tu espacio y según cómo cocinas tú: dónde preparas, qué guardas y cuántos la usan al mismo tiempo. La fabricamos y la instalamos completa.</p>
+    </nav>
+
+    <article class="chapter" id="cocinas" aria-labelledby="ch-cocina">
+      <figure class="chapter__media reveal">
+        <img src="assets/img/v15-cat-cocina.webp" srcset="assets/img/v15-cat-cocina-640.webp 640w, assets/img/v15-cat-cocina.webp 1152w" sizes="(min-width: 960px) 62vw, 100vw" width="1152" height="864" alt="Cocina de madera con cubierta clara, vista de cerca" loading="lazy" decoding="async">
+        <figcaption class="ref-tag">Referencia de estilo</figcaption>
+      </figure>
+      <div class="chapter__copy reveal">
+        <p class="chapter__n"><span>01</span>Cocinas integrales a la medida</p>
+        <h3 id="ch-cocina">Tu cocina, según <em>cómo cocinas tú.</em></h3>
+        <p class="chapter__lead">Medimos tu espacio, la diseñamos contigo, la fabricamos y la instalamos completa.</p>
         <dl class="facts">
-          <div><dt>Qué incluye</dt><dd>Diseño, muebles altos y bajos, cubierta, herrajes de cierre suave, iluminación e instalación.</dd></div>
-          <div><dt>Cómo se decide</dt><dd>Medimos en tu casa y eliges cubierta de cuarzo, granito o laminado con las muestras en la mano. Isla o barra, solo si el espacio lo permite.</dd></div>
-          <div><dt>Plazo</dt><dd>Normalmente de 3 a 4 semanas desde que apruebas el diseño. La fecha exacta va en tu presupuesto.</dd></div>
+          <div><dt>Incluye</dt><dd>Diseño, muebles, cubierta, herrajes de cierre suave, iluminación e instalación.</dd></div>
+          <div><dt>Se decide</dt><dd>Cuarzo, granito o laminado, con las muestras en la mano.</dd></div>
+          <div><dt>Plazo</dt><dd>Normalmente de 3 a 4 semanas desde que apruebas el diseño.</dd></div>
         </dl>
         <a class="btn btn--primary" href="#filtro">Cotizar mi cocina <span aria-hidden="true">→</span></a>
       </div>
     </article>
 
-    <article class="chapter reveal" id="banos" aria-labelledby="ch-bano">
-      <div class="chapter__media">
-        <img src="assets/img/servicio-bano-640.webp" srcset="assets/img/servicio-bano-640.webp 640w, assets/img/servicio-bano.webp 1600w" sizes="(min-width: 960px) 46vw, 100vw" width="1600" height="1200" alt="Baño con regadera de cristal, mueble de madera flotante y espejo" loading="lazy" decoding="async">
-      </div>
-      <div class="chapter__copy">
+    <article class="chapter chapter--flip" id="banos" aria-labelledby="ch-bano">
+      <figure class="chapter__media reveal">
+        <img src="assets/img/v15-cat-bano.webp" srcset="assets/img/v15-cat-bano-640.webp 640w, assets/img/v15-cat-bano.webp 1152w" sizes="(min-width: 960px) 62vw, 100vw" width="1152" height="864" alt="Baño en tonos piedra con regadera abierta y lavabo de piedra sobre mueble de nogal" loading="lazy" decoding="async">
+        <figcaption class="ref-tag">Referencia de estilo</figcaption>
+      </figure>
+      <div class="chapter__copy reveal">
         <p class="chapter__n"><span>02</span>Baños</p>
-        <h3 id="ch-bano">Baños que se usan diario y se limpian fácil</h3>
-        <p class="chapter__lead">Regadera, cancel, muebles y azulejo. Retiramos lo que se sustituye, protegemos el resto de tu casa y entregamos limpio.</p>
+        <h3 id="ch-bano">Se usa diario <em>y se limpia fácil.</em></h3>
+        <p class="chapter__lead">Retiramos lo que se sustituye, protegemos tu casa y entregamos limpio.</p>
         <dl class="facts">
-          <div><dt>Qué incluye</dt><dd>Regadera, cancel, muebles de baño, azulejo e instalación.</dd></div>
-          <div><dt>Cómo se decide</dt><dd>Azulejo, cancel y mueble los eliges con muestras en la visita.</dd></div>
-          <div><dt>Plazo</dt><dd>Normalmente de 1 a 2 semanas. La fecha exacta va en tu presupuesto.</dd></div>
+          <div><dt>Incluye</dt><dd>Regadera, cancel, muebles de baño, azulejo e instalación.</dd></div>
+          <div><dt>Se decide</dt><dd>Azulejo, cancel y mueble, con muestras en la visita.</dd></div>
+          <div><dt>Plazo</dt><dd>Normalmente de 1 a 2 semanas.</dd></div>
         </dl>
         <a class="link-arrow" href="#filtro">Cotizar mi baño <span aria-hidden="true">→</span></a>
       </div>
     </article>
 
-    <article class="chapter chapter--flip reveal" id="closets" aria-labelledby="ch-closet">
-      <div class="chapter__media">
-        <img src="assets/img/servicio-closet-640.webp" srcset="assets/img/servicio-closet-640.webp 640w, assets/img/servicio-closet.webp 1600w" sizes="(min-width: 960px) 46vw, 100vw" width="1600" height="1200" alt="Vestidor de madera clara con repisas iluminadas y cajonera al centro" loading="lazy" decoding="async">
-      </div>
-      <div class="chapter__copy">
+    <article class="chapter" id="closets" aria-labelledby="ch-closet">
+      <figure class="chapter__media reveal">
+        <img src="assets/img/v15-cat-closet.webp" srcset="assets/img/v15-cat-closet-640.webp 640w, assets/img/v15-cat-closet.webp 1152w" sizes="(min-width: 960px) 62vw, 100vw" width="1152" height="864" alt="Vestidor de madera con repisas iluminadas y cajones" loading="lazy" decoding="async">
+        <figcaption class="ref-tag">Referencia de estilo</figcaption>
+      </figure>
+      <div class="chapter__copy reveal">
         <p class="chapter__n"><span>03</span>Closets y vestidores</p>
-        <h3 id="ch-closet">Cada cosa con su lugar, a la medida del cuarto</h3>
-        <p class="chapter__lead">Carpintería a la medida, con iluminación. Antes de diseñar vemos qué guardas: ropa larga o corta, cajones, zapatos, maletas.</p>
+        <h3 id="ch-closet">Cada cosa <em>con su lugar.</em></h3>
+        <p class="chapter__lead">Antes de diseñar vemos qué guardas: ropa larga o corta, cajones, zapatos, maletas.</p>
         <dl class="facts">
-          <div><dt>Qué incluye</dt><dd>Diseño, fabricación de módulos, herrajes, iluminación e instalación.</dd></div>
-          <div><dt>Cómo se decide</dt><dd>Maderas, chapas y distribución con las medidas reales de tu cuarto.</dd></div>
+          <div><dt>Incluye</dt><dd>Diseño, módulos, herrajes, iluminación e instalación.</dd></div>
+          <div><dt>Se decide</dt><dd>Maderas, chapas y distribución con las medidas reales del cuarto.</dd></div>
         </dl>
         <a class="link-arrow" href="#filtro">Cotizar mi closet <span aria-hidden="true">→</span></a>
       </div>
     </article>
 
-    <article class="chapter reveal" id="carpinteria" aria-labelledby="ch-carp">
-      <div class="chapter__media">
-        <img src="assets/img/servicio-carpinteria-640.webp" srcset="assets/img/servicio-carpinteria-640.webp 640w, assets/img/servicio-carpinteria.webp 1600w" sizes="(min-width: 960px) 46vw, 100vw" width="1600" height="1200" alt="Librero y mueble bajo de madera a la medida, con herrajes de latón, en un interior claro" loading="lazy" decoding="async">
-      </div>
-      <div class="chapter__copy">
+    <article class="chapter chapter--flip chapter--duo" id="carpinteria" aria-labelledby="ch-carp">
+      <figure class="chapter__media reveal">
+        <img src="assets/img/v15-cat-carpinteria.webp" srcset="assets/img/v15-cat-carpinteria-640.webp 640w, assets/img/v15-cat-carpinteria.webp 1152w" sizes="(min-width: 960px) 62vw, 100vw" width="1152" height="864" alt="Carpintería a la medida en madera, con uniones y cantos cuidados" loading="lazy" decoding="async">
+        <img class="chapter__inset" src="assets/img/v15-cat-mueble-640.webp" width="640" height="480" alt="Aparador de nogal con tres puertas junto a una silla tapizada" loading="lazy" decoding="async">
+        <figcaption class="ref-tag">Referencias de estilo</figcaption>
+      </figure>
+      <div class="chapter__copy reveal">
         <p class="chapter__n"><span>04</span>Carpintería y muebles de madera</p>
-        <h3 id="ch-carp">El mueble que falta, hecho para el lugar donde va</h3>
-        <p class="chapter__lead">Muebles a la medida y carpintería fina para la casa, con el mismo cuidado que ponemos en una cocina: se mide, se diseña contigo, se fabrica y se instala.</p>
+        <h3 id="ch-carp">El mueble que falta, <em>hecho para donde va.</em></h3>
+        <p class="chapter__lead">Muebles a la medida y carpintería fina, con el mismo cuidado que una cocina.</p>
         <dl class="facts">
-          <div><dt>Maderas</dt><dd>Maderas y chapas en tonos claros y nogal. Las muestras las ves en la visita, con la luz de tu casa.</dd></div>
-          <div><dt>Cómo se decide</dt><dd>Diseño, medidas y acabado quedan por escrito en tu presupuesto antes de fabricar.</dd></div>
+          <div><dt>Maderas</dt><dd>Tonos claros y nogal, en madera o chapa. Las muestras las ves con la luz de tu casa.</dd></div>
+          <div><dt>Se decide</dt><dd>Diseño, medidas y acabado quedan por escrito antes de fabricar.</dd></div>
         </dl>
         <a class="link-arrow" href="#filtro">Cotizar un mueble <span aria-hidden="true">→</span></a>
       </div>
     </article>
 
-    <article class="chapter chapter--flip reveal" id="integral" aria-labelledby="ch-int">
-      <div class="chapter__media">
-        <img src="assets/img/servicio-integral-640.webp" srcset="assets/img/servicio-integral-640.webp 640w, assets/img/servicio-integral.webp 1600w" sizes="(min-width: 960px) 46vw, 100vw" width="1600" height="1200" alt="Sala y comedor abiertos con piso claro, chimenea y ventanales" loading="lazy" decoding="async">
-      </div>
-      <div class="chapter__copy">
+    <article class="chapter chapter--wide" id="integral" aria-labelledby="ch-int">
+      <figure class="chapter__media reveal">
+        <img src="assets/img/v15-cat-integral.webp" srcset="assets/img/v15-cat-integral-640.webp 640w, assets/img/v15-cat-integral-1280.webp 1280w" sizes="100vw" width="1280" height="720" alt="Sala abierta con muro de piedra, piso de madera clara y cocina al fondo" loading="lazy" decoding="async">
+        <figcaption class="ref-tag">Referencia de estilo</figcaption>
+      </figure>
+      <div class="chapter__copy reveal">
         <p class="chapter__n"><span>05</span>Remodelación integral</p>
-        <h3 id="ch-int">Varios espacios, un solo proyecto</h3>
-        <p class="chapter__lead">Cuando la obra toca cocina, baño, pisos y pintura, la coordinamos completa: un solo presupuesto, un solo equipo y una sola fecha de entrega.</p>
+        <h3 id="ch-int">Varios espacios, <em>un solo proyecto.</em></h3>
+        <p class="chapter__lead">Cuando la obra toca cocina, baño, pisos y pintura, la coordinamos completa: un presupuesto, un equipo y una fecha de entrega.</p>
         <dl class="facts">
-          <div><dt>Qué incluye</dt><dd>Carpintería, baños, pisos, pintura y acabados, en el orden que tu casa necesita.</dd></div>
-          <div><dt>Cómo se decide</dt><dd>Recorremos la casa contigo en la visita y armamos el alcance por escrito.</dd></div>
+          <div><dt>Incluye</dt><dd>Carpintería, baños, pisos, pintura y acabados, en el orden que tu casa necesita.</dd></div>
+          <div><dt>Se decide</dt><dd>Recorremos la casa contigo y armamos el alcance por escrito.</dd></div>
         </dl>
-        <a class="link-arrow" href="#filtro">Cotizar mi remodelación <span aria-hidden="true">→</span></a>
+        <a class="btn btn--light" href="#filtro">Cotizar mi remodelación <span aria-hidden="true">→</span></a>
       </div>
     </article>
+  </div>
 
+  <div class="wrap">
     <div class="also reveal" aria-labelledby="also-t">
       <p class="also__t" id="also-t">También hacemos</p>
       <ul class="also__list">
@@ -257,39 +339,23 @@
 
 <!-- 4 · MATERIALES (acto oscuro) -->
 <section class="section section--dark" id="materiales" aria-labelledby="mat-t">
-  <div class="wrap">
-    <div class="mat-head">
+  <div class="wrap mat-grid">
+    <figure class="mat-photo reveal">
+      <img src="assets/img/v15-intro-material.webp" srcset="assets/img/v15-intro-material-640.webp 640w, assets/img/v15-intro-material-1280.webp 1152w" sizes="(min-width: 960px) 50vw, 100vw" width="1152" height="864" alt="Detalle de madera, piedra y herraje metálico sobre una cubierta" loading="lazy" decoding="async">
+      <figcaption class="ref-tag">Referencia de estilo</figcaption>
+    </figure>
+    <div class="mat-copy">
       <header class="sec-head reveal">
         <p class="kicker">Materiales y acabados</p>
-        <h2 id="mat-t">El material lo eliges tú, <em>con las muestras en la mano.</em></h2>
-        <p class="sec-sub">En la visita te llevamos muestras para verlas con la luz de tu casa. Lo que apruebas queda escrito en tu presupuesto, antes de empezar.</p>
+        <h2 id="mat-t">Lo eliges tú, <em>con las muestras en la mano.</em></h2>
+        <p class="sec-sub">Te llevamos muestras a la visita. Lo que apruebas queda en tu presupuesto.</p>
       </header>
-      <figure class="mat-photo reveal">
-        <img src="assets/img/servicio-cocina-640.webp" srcset="assets/img/servicio-cocina-640.webp 640w, assets/img/servicio-cocina.webp 1600w" sizes="(min-width: 960px) 40vw, 100vw" width="1600" height="1200" alt="Gabinetes de madera clara con jaladeras y llave de latón" loading="lazy" decoding="async">
-        <figcaption>Referencia de estilo</figcaption>
-      </figure>
-    </div>
-    <div class="mats">
-      <article class="mat reveal">
-        <div class="mat__swatch mat__swatch--wood" aria-hidden="true"></div>
-        <h3>Maderas y chapas</h3>
-        <p>Tonos claros y nogal, en madera o chapa, según el diseño que armemos para tu cocina, closet o mueble.</p>
-      </article>
-      <article class="mat reveal">
-        <div class="mat__swatch mat__swatch--stone" aria-hidden="true"></div>
-        <h3>Cubiertas</h3>
-        <p>Cuarzo, granito o laminado. Te explicamos en qué cambia cada una al usarla diario y eliges con la muestra enfrente.</p>
-      </article>
-      <article class="mat reveal">
-        <div class="mat__swatch mat__swatch--metal" aria-hidden="true"></div>
-        <h3>Herrajes de cierre suave</h3>
-        <p>En puertas y cajones, incluidos en el presupuesto que firmas. Se notan cada vez que cierras un cajón.</p>
-      </article>
-      <article class="mat reveal">
-        <div class="mat__swatch mat__swatch--light" aria-hidden="true"></div>
-        <h3>Iluminación y acabados</h3>
-        <p>Luz bajo gabinete o dentro del closet, pintura y detalles finales que cerramos contigo al aprobar el diseño.</p>
-      </article>
+      <ul class="mats">
+        <li class="mat reveal"><span class="mat__swatch mat__swatch--wood" aria-hidden="true"></span><h3>Maderas y chapas</h3><p>Tonos claros y nogal.</p></li>
+        <li class="mat reveal"><span class="mat__swatch mat__swatch--stone" aria-hidden="true"></span><h3>Cubiertas</h3><p>Cuarzo, granito o laminado.</p></li>
+        <li class="mat reveal"><span class="mat__swatch mat__swatch--metal" aria-hidden="true"></span><h3>Herrajes de cierre suave</h3><p>En puertas y cajones, incluidos.</p></li>
+        <li class="mat reveal"><span class="mat__swatch mat__swatch--light" aria-hidden="true"></span><h3>Iluminación y acabados</h3><p>Luz bajo gabinete o en el closet.</p></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -299,25 +365,25 @@
   <div class="wrap">
     <header class="sec-head reveal">
       <p class="kicker">Cómo trabajamos</p>
-      <h2 id="proc-t">De tu mensaje a tu cocina terminada, <span class="soft">en 4 pasos.</span></h2>
+      <h2 id="proc-t">De tu mensaje a tu obra terminada, <em>en 4 pasos.</em></h2>
     </header>
     <ol class="steps">
-      <li class="step reveal"><span class="step__n">01</span><h3>Cotiza por WhatsApp</h3><p>Responde 4 preguntas en 1 minuto. Te contestamos el mismo día hábil.</p><p class="step__get">4 preguntas · Sin compromiso</p></li>
-      <li class="step reveal"><span class="step__n">02</span><h3>Visita y medidas</h3><p>Vamos a tu casa sin costo, medimos y te mostramos opciones de materiales ahí mismo.</p><p class="step__get">Sin costo en Monterrey y área metropolitana</p></li>
-      <li class="step reveal"><span class="step__n">03</span><h3>Presupuesto por escrito</h3><p>Precio cerrado, materiales detallados y fecha de entrega. Tú decides con calma.</p><p class="step__get">Precio · Materiales · Fecha</p></li>
-      <li class="step reveal"><span class="step__n">04</span><h3>Fabricamos e instalamos</h3><p>Te mandamos avances por WhatsApp y entregamos tu espacio limpio, revisado contigo.</p><p class="step__get">Avances · Entrega limpia · Revisión final</p></li>
+      <li class="step reveal"><span class="step__n">01</span><h3>Cotiza por WhatsApp</h3><p>4 preguntas, 1 minuto. Te contestamos el mismo día hábil.</p></li>
+      <li class="step reveal"><span class="step__n">02</span><h3>Visita y medidas</h3><p>Sin costo en Monterrey y área metropolitana, con muestras de materiales.</p></li>
+      <li class="step reveal"><span class="step__n">03</span><h3>Presupuesto por escrito</h3><p>Precio cerrado, materiales y fecha de entrega. Decides con calma.</p></li>
+      <li class="step reveal"><span class="step__n">04</span><h3>Fabricamos e instalamos</h3><p>Avances por WhatsApp y entrega limpia, revisada contigo.</p></li>
     </ol>
     <p class="pay reveal"><b>Pago:</b> anticipo para materiales y el resto conforme avanza la obra, por transferencia o efectivo. Todo queda por escrito. Si necesitas factura, la emitimos.</p>
   </div>
 </section>
 
 <!-- 6 · ESTILOS Y ACABADOS (galería de referencia) -->
-<section class="section section--stone" id="estilos" aria-labelledby="est-t">
+<section class="section section--stone cv" id="estilos" aria-labelledby="est-t">
   <div class="wrap">
     <header class="sec-head sec-head--row reveal">
       <div>
-        <p class="kicker">Estilos y acabados de referencia</p>
-        <h2 id="est-t">Ideas para empezar <span class="soft">a decidir.</span></h2>
+        <p class="kicker">Estilos de referencia</p>
+        <h2 id="est-t">Ideas para empezar <em>a decidir.</em></h2>
         <p class="honest">Referencias de estilo, no son obras entregadas por este estudio. Sirven para platicar en la visita qué te gusta.</p>
       </div>
       <a class="link-arrow" href="#filtro">Quiero algo así <span aria-hidden="true">→</span></a>
@@ -327,7 +393,7 @@
         <img src="assets/img/galeria-01-640.webp" srcset="assets/img/galeria-01-640.webp 640w, assets/img/galeria-01.webp 1600w" sizes="(min-width: 960px) 62vw, 100vw" width="1600" height="1067" alt="Referencia de estilo: cocina en madera clara con campana integrada" loading="lazy" decoding="async">
         <span class="g__cap"><b>Cocina en madera clara</b>Referencia de estilo</span>
       </button></li>
-      <li class="g reveal"><button class="g__btn" type="button" data-full="assets/img/galeria-02.webp" data-title="Regadera con cancel" data-meta="Referencia de estilo · Cancel de cristal y herrajes de latón">
+      <li class="g reveal"><button class="g__btn" type="button" data-full="assets/img/galeria-02.webp" data-title="Regadera con cancel" data-meta="Referencia de estilo · Cancel de cristal y herrajes metálicos">
         <img src="assets/img/galeria-02-640.webp" srcset="assets/img/galeria-02-640.webp 640w, assets/img/galeria-02.webp 1600w" sizes="(min-width: 960px) 30vw, 50vw" width="1600" height="1067" alt="Referencia de estilo: regadera con cancel de cristal" loading="lazy" decoding="async">
         <span class="g__cap"><b>Regadera con cancel</b>Referencia de estilo</span>
       </button></li>
@@ -369,7 +435,7 @@
 </dialog>
 
 <!-- 7 · GARANTÍA -->
-<section class="section" id="garantia" aria-labelledby="gar-t">
+<section class="section cv" id="garantia" aria-labelledby="gar-t">
   <div class="wrap">
     <div class="guarantee reveal">
       <div class="guarantee__seal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6zM9 12l2 2 4-4"/></svg></div>
@@ -380,7 +446,7 @@
           <li>Garantía por escrito en mano de obra</li>
           <li>Precio cerrado: sin cobros sorpresa</li>
           <li>Revisión final contigo antes de entregar</li>
-          <li>Ajustes posteriores atendidos por el mismo equipo</li>
+          <li>Ajustes posteriores con el mismo equipo</li>
         </ul>
         <p class="guarantee__note">Los materiales mantienen la garantía de su fabricante.</p>
         <a class="btn btn--primary btn--lg" href="#filtro">Cotiza con garantía <span aria-hidden="true">→</span></a>
@@ -388,12 +454,12 @@
     </div>
 
     <div class="worries" id="por-que" aria-labelledby="pq-t">
-      <h3 class="worries__t" id="pq-t">Lo que más preocupa al remodelar, <span class="soft">resuelto desde el día uno.</span></h3>
+      <h3 class="worries__t" id="pq-t">Lo que más preocupa al remodelar, <em>resuelto desde el día uno.</em></h3>
       <div class="cards4">
-        <article class="qa reveal"><p class="qa__q">“¿Y si al final me cobran más?”</p><h4>Precio cerrado por escrito.</h4><p>Firmas un presupuesto con materiales y montos. Si algo cambia, lo autorizas tú antes.</p></article>
-        <article class="qa reveal"><p class="qa__q">“¿Y si nunca terminan?”</p><h4>Fecha de entrega comprometida.</h4><p>La fecha va en tu presupuesto y te mandamos avances de la obra por WhatsApp.</p></article>
-        <article class="qa reveal"><p class="qa__q">“¿Y el polvo y el desorden?”</p><h4>Obra limpia y protegida.</h4><p>Cubrimos pisos y muebles, limpiamos al cerrar cada jornada y nos llevamos el escombro.</p></article>
-        <article class="qa reveal"><p class="qa__q">“¿Con cuántos tengo que tratar?”</p><h4>Un solo responsable.</h4><p>Diseño, fabricación e instalación con el mismo equipo. Una persona te atiende de principio a fin.</p></article>
+        <article class="qa reveal"><p class="qa__q">“¿Y si al final me cobran más?”</p><h4>Precio cerrado por escrito.</h4><p>Si algo cambia, lo autorizas tú antes.</p></article>
+        <article class="qa reveal"><p class="qa__q">“¿Y si nunca terminan?”</p><h4>Fecha de entrega comprometida.</h4><p>Va en tu presupuesto, con avances por WhatsApp.</p></article>
+        <article class="qa reveal"><p class="qa__q">“¿Y el polvo y el desorden?”</p><h4>Obra limpia y protegida.</h4><p>Cubrimos pisos y muebles y nos llevamos el escombro.</p></article>
+        <article class="qa reveal"><p class="qa__q">“¿Con cuántos tengo que tratar?”</p><h4>Un solo responsable.</h4><p>Una persona te atiende de principio a fin.</p></article>
       </div>
     </div>
   </div>
@@ -404,8 +470,8 @@
   <div class="wrap zones">
     <div class="zones__copy reveal">
       <p class="kicker">Zona de servicio</p>
-      <h2 id="zon-t">Trabajamos en Monterrey <span class="soft">y su área metropolitana.</span></h2>
-      <p class="sec-sub">La visita y la toma de medidas no tienen costo en toda la zona. Vamos a tu casa con las muestras.</p>
+      <h2 id="zon-t">Monterrey <em>y su área metropolitana.</em></h2>
+      <p class="sec-sub">La visita y la toma de medidas no tienen costo en toda la zona.</p>
       <ul class="zones__list" aria-label="Municipios donde trabajamos">
         <li>Monterrey</li>
         <li>San Pedro Garza García</li>
@@ -433,7 +499,7 @@
   <div class="wrap quote-grid">
     <div class="quote-copy reveal">
       <p class="kicker">Cotiza tu proyecto</p>
-      <h2 id="cot-t">Tu presupuesto empieza con <span class="soft">4 preguntas.</span></h2>
+      <h2 id="cot-t">Tu presupuesto empieza con <em>4 preguntas.</em></h2>
       <p class="sec-sub">Al final se abre WhatsApp con tu mensaje listo. Sin llamadas insistentes y sin compromiso.</p>
       <ul class="checks">
         <li data-cfg="promesaRespuesta">Respuesta el mismo día hábil</li>
@@ -523,11 +589,11 @@
 </section>
 
 <!-- 10 · PREGUNTAS FRECUENTES -->
-<section class="section section--stone" id="preguntas" aria-labelledby="faq-t">
+<section class="section section--stone cv" id="preguntas" aria-labelledby="faq-t">
   <div class="wrap faq">
     <header class="sec-head reveal">
       <p class="kicker">Preguntas frecuentes</p>
-      <h2 id="faq-t">Antes de decidir, <span class="soft">lo que todos preguntan.</span></h2>
+      <h2 id="faq-t">Antes de decidir, <em>lo que todos preguntan.</em></h2>
     </header>
     <div class="faq__list">
       <details><summary>¿Cobran la visita?</summary><p>No. La visita para medir y mostrarte opciones no tiene costo dentro de Monterrey y su área metropolitana.</p></details>
@@ -553,7 +619,7 @@
     <h2 id="fin-t">La cocina que quieres, <em>con fecha y precio por escrito.</em></h2>
     <p>Cuéntanos tu proyecto en 1 minuto. Te contestamos el mismo día hábil.</p>
     <div class="final__ctas">
-      <a class="btn btn--light btn--lg" href="#filtro">Cotizar <span aria-hidden="true">→</span></a>
+      <a class="btn btn--primary btn--lg" href="#filtro">Cotizar <span aria-hidden="true">→</span></a>
       <a class="btn btn--outline-light btn--lg" href="https://wa.me/524441107319?text=Hola%2C%20vengo%20de%20la%20p%C3%A1gina%20de%20Reforma%20Innovare%20y%20quiero%20cotizar." target="_blank" rel="noopener"><svg class="i-wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> WhatsApp</a>
     </div>
   </div>
@@ -590,7 +656,7 @@
 
 <div id="chat-root"><div class="chat-launch" id="chat-launch"><div class="chat-launch__bob"><button type="button" class="chat-tip" id="chat-tip">¿Te ayudo?</button><button type="button" class="chat-fab" id="chat-fab" aria-label="Abrir chat con Musee, asistente de Reforma Innovare" aria-haspopup="dialog" aria-expanded="false"><img class="chat-fab__img" src="assets/img/musee-192.webp" srcset="assets/img/musee-96.webp 1x, assets/img/musee-192.webp 2x" alt="Musee, asistente de Reforma Innovare" width="72" height="72" decoding="async"></button></div></div></div>
 
-<script src="assets/js/app.js?v=14" defer></script>
+<script src="assets/js/app.js?v=15" defer></script>
 <script src="assets/js/musee-respuestas.js?v=14" defer></script>
 <script src="assets/js/chat.js?v=15" defer></script>
 </body>

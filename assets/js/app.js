@@ -113,7 +113,7 @@ const CONFIG = {
       if (now !== inIntro) {
         inIntro = now;
         root.classList.toggle('at-intro', now);
-        if (themeMeta) themeMeta.setAttribute('content', now ? '#152f29' : '#f6f3ed');
+        if (themeMeta) themeMeta.setAttribute('content', now ? '#161310' : '#f3ede3');
         introListeners.forEach((f) => f());
       }
     };
@@ -171,6 +171,64 @@ const CONFIG = {
     window.addEventListener('resize', sweep);
     window.addEventListener('load', sweep);
   }
+
+  /* ---------- Escenario de categorías: pestañas con crossfade ---------- */
+  const showcase = $('#showcase');
+  if (showcase) {
+    const tabs = $$('[role="tab"]', showcase);
+    const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
+    const list = $('[role="tablist"]', showcase);
+    let cur = Math.max(0, tabs.findIndex((t) => t.getAttribute('aria-selected') === 'true'));
+    const select = (i, focus = false) => {
+      cur = (i + tabs.length) % tabs.length;
+      tabs.forEach((t, k) => {
+        const on = k === cur;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        panels[k].classList.toggle('is-active', on);
+      });
+      if (focus) tabs[cur].focus({ preventScroll: true });
+      // En celular la fila de pestañas se desliza para dejar visible la activa.
+      if (list.scrollWidth > list.clientWidth + 2) {
+        const t = tabs[cur];
+        list.scrollTo({ left: t.offsetLeft - (list.clientWidth - t.offsetWidth) / 2, behavior: reduceMotion ? 'auto' : 'smooth' });
+      }
+    };
+    // Avance automático solo con movimiento permitido: se detiene al primer toque y se pausa fuera de pantalla.
+    const stopAuto = () => showcase.classList.remove('is-auto');
+    tabs.forEach((t, k) => t.addEventListener('click', () => { stopAuto(); select(k); }));
+    list.addEventListener('keydown', (e) => {
+      const to = { ArrowRight: cur + 1, ArrowDown: cur + 1, ArrowLeft: cur - 1, ArrowUp: cur - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (to === undefined) return;
+      e.preventDefault(); stopAuto(); select(to, true);
+    });
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      showcase.classList.add('is-auto', 'is-paused');
+      new IntersectionObserver(([e]) => showcase.classList.toggle('is-paused', !e.isIntersecting), { threshold: 0.35 }).observe(showcase);
+      showcase.addEventListener('animationend', (e) => { if (e.animationName === 'tabfill' && showcase.classList.contains('is-auto')) select(cur + 1); });
+    }
+  }
+
+  /* ---------- Estado activo: menú y barra de categorías ---------- */
+  const spy = (links) => {
+    const pairs = links.map((a) => [document.getElementById(a.getAttribute('href').slice(1)), a]).filter(([el]) => el);
+    if (!pairs.length || !('IntersectionObserver' in window)) return;
+    const seen = new Set();
+    let last = null;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) seen.add(e.target); else seen.delete(e.target); });
+      let act = null;
+      pairs.forEach(([el, a]) => { if (seen.has(el)) act = a; });
+      if (act === last) return;
+      last = act;
+      links.forEach((a) => { if (a === act) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+      const row = act && act.parentElement;
+      if (row && row.scrollWidth > row.clientWidth + 2) row.scrollTo({ left: act.offsetLeft - (row.clientWidth - act.offsetWidth) / 2, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }, { rootMargin: '-38% 0px -58% 0px' });
+    pairs.forEach(([el]) => io.observe(el));
+  };
+  spy($$('.nav a'));
+  spy($$('#catbar a'));
 
   /* ---------- Galería con vista ampliada ---------- */
   const lb = $('#lightbox');
